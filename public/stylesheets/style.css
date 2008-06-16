@@ -848,6 +848,7 @@ input.error {
 }
 #city a{
   font-weight:normal;
+  text-decoration: none;
 }
 #city a:hover{
   font-weight:bold;
