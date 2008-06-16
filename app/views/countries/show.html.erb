@@ -12,7 +12,7 @@
       <div style="position:absolute; background:url('<%=map.public_filename%>') no-repeat left top; width:<%=map.width%>px; height:<%=map.height%>px;">
         <% @cities.each do |city| %>
           <div id='city' style="position:absolute; width:40px; height:14px; left:<%=city.city_coord.coord[:left] rescue "0"%>px; top:<%=city.city_coord.coord[:top] rescue "0"%>px; display:block"><nobr><%= link_to city.name, lang_country_city_path(lang_id(@lang),@country.ident_name,city.ident_name) %></nobr></div>
-          <div id='city_marker' style="position:absolute; background:#ccc; width:8px; height:8px; left:<%=city.city_coord.coord[:left_marker] rescue "0"%>px; top:<%=city.city_coord.coord[:top_marker] rescue "0"%>px; display:block">*</div>
+          <div id='city_marker' style=" left:<%=city.city_coord.coord[:left_marker] rescue "0"%>px; top:<%=city.city_coord.coord[:top_marker] rescue "0"%>px; "></div>
          <% end %>
       </div>
     </div>
