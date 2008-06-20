@@ -16,7 +16,7 @@ $(document).ready(function(){
 <div id="content_main">
   <h3><%= @status.name %></h3>
 
-    <%for member in @status.members.find(:all, :order =>'number ASC')%>
+    <%for member in @status.members.find(:all, :order =>'number DESC')%>
       <div  class="success_story">
       <h4><%=member.first_name%> (<%=member.status_additional%><%=member.statuses.find(:all).collect(&:status_name).join(",")%> <%= ","+member.city.name %>)</h4>
       <%= link_to :schedule.l("Расписание"), lang_member_member_events_path(lang_id(@lang),member) if member.has_current_schedule?%>
