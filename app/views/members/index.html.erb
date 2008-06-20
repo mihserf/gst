@@ -6,6 +6,7 @@
 <%current_lang=nil%>
 <% for member in @members %>
     <tr>
+      <td><%=  image_tag(member.member_photo.public_filename(:thumb)) unless member.member_photo.nil?%></td>
         <td><%= link_to(member.name, member_path(member))%></td>
         <td>
             <%@locales.each do |loc|%>
