@@ -24,14 +24,10 @@ $(document).ready(function(){
       
         <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_lang_member_path(lang_id(@lang),member) if admin? %>
       
-        <% unless member.story.nil? %>
-        <div class="success_story_short">
-          <%=member.story.short_text%>
-          <div><a class="toggle_link" href="#"><%=:read_more.l("читать далее")%></a></div>
-          <div class="toggle_div success_story_full">
+        <% unless member.story.nil? %>  
+          <div>
           <%=member.story.body%>
           </div>
-        </div>
         <% end %>
       </div>
       <%end%>
