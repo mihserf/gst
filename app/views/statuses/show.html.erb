@@ -22,7 +22,7 @@ $(document).ready(function(){
       <%= link_to :schedule.l("Расписание"), lang_member_member_events_path(lang_id(@lang),member) if member.has_current_schedule?%>
       <%= image_tag member.member_photo.public_filename(:view),  :align=>"left" unless member.member_photo.nil?%>
       
-        <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_member_path(member) if admin? %>
+        <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), lang_edit_member_path(@lang,member) if admin? %>
       
         <% unless member.story.nil? %>
         <div class="success_story_short">
