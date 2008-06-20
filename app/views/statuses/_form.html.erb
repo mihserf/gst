@@ -11,7 +11,7 @@
 <% form_for(@status) do |f| %>
   <%= f.error_messages %>
 
-  
+
   <p>
     <%=ident_choice(@status)%>
   </p>
@@ -22,10 +22,10 @@
   </p>
   <p>
     <%= f.label 'Название статуса (отображение у члена GST)' %><br />
-    <%= f.text_field :status_name, :class => "required" %>
+    <%= f.text_field :status_name %>
   </p>
-  
-  
+
+
   <p>
       <b>Порядок в списке</b> (перетащите мышкой название записи, чтобы изменить её порядок в списке)
       <%= hidden_field_tag 'status[number]',Status.count+1 if @status.new_record? %>
