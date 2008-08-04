@@ -32,4 +32,36 @@ class PagesController < ApplicationController
   def home
     @page=Page.find_by_ident_name("home")
   end
+
+  def about
+    @page=Page.find_by_ident_name("about")
+  end
+
+  def contacts
+    @page=Page.find_by_ident_name("contacts")
+  end
+
+  def faq
+    @page=Page.find_by_ident_name("faq")
+  end
+
+  def charity
+    @page=Page.find_by_ident_name("charity")
+  end
+
+  def founder
+    @page=Page.find_by_ident_name("founder")
+  end
+
+  def team
+    @page=Page.find_by_ident_name("team")
+  end
+
+  def mission
+    @page=Page.find_by_ident_name("mission")
+  end
+
+  def principles
+    @page=Page.find_by_ident_name("principles")
+  end
 end

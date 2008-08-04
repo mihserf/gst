@@ -1,9 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   map.with_options :controller => "pages" do |page|
-    page.home "", :action =>  "home"
-    page.home "/about", :action =>  "about"
+    page.home "/", :action =>  "home"
+    ["about","contacts","faq","charity","founder","team","mission","principles"].each do |action|  page.home "/#{action}", :action =>action   end
     page.home ":lang", :action =>  "home"
-    page.home ":lang/about", :action =>  "about"
+    page.home ":lang/:action"
+    
   end
 
   map.with_options :path_prefix => ':lang' do |l|
