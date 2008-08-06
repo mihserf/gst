@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
  map.resources :countries, :has_many  => :cities
  # map.resources :cities
 
-  map.with_options :path_prefix => ':lang', :name_prefix => 'lang_' do |l|
+  map.with_options :path_prefix => ':lang', :lang => /ru|en/, :name_prefix => 'lang_' do |l|
     l.resources :pages
     l.resources :countries, :has_many  => :cities
     l.resources :cities, :has_many => :opinions
@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"
     ["about_us","contacts","faq","charity","founder","team","mission","principles"].each do |action|  page.home "/#{action}", :action =>action   end
-    page.home ":lang/", :action =>  "home"
+    page.home ":lang/", :action =>  "home", :lang => /ru|en/
     page.home ":lang/:action"
 
   end
