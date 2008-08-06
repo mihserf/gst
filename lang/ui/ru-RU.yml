@@ -2,6 +2,15 @@ locale_name: Russian
 
 title: Заголовок
 
+menu: ru
+
+#home tabs
+news: Новости
+success_stories: Истории успеха
+
+#city/show
+opinions: Отзывы
+
 
 
 

@@ -2,8 +2,9 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
   around_filter :set_locale
+  helper :all # include all helpers, all the time
+  
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -14,7 +15,23 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
 
+  
   private
+
+  def admin_required
+    if session[:admin]
+      return true
+    else
+      admin_login
+    end
+  end
+
+  def admin_login
+    redirect_to admin_login_path
+  end
+
+
+
 
   # Set the locale from the parameters, the session, or the navigator
   # If none of these works, the Globalite default locale is set (en-*)
@@ -33,8 +50,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    @lang=params[:lang]
-
     if params_locale_code
         logger.debug "[globalite] #{params_locale_code} locale passed"
         Locale.code = params_locale_code #get_matching_ui_locale(plocale_code) #|| session[:locale] || get_valid_lang_from_accept_header || Globalite.default_language
@@ -47,7 +62,7 @@ class ApplicationController < ActionController::Base
         logger.debug "[globalite] found a valid http header locale: #{get_valid_lang_from_accept_header}"
         Locale.code = get_valid_lang_from_accept_header
     end
-
+    @lang=Locale.code #@lang used in controllers and views
     logger.debug "[globalite] Locale set to #{Locale.code}"
     # render the page
     yield

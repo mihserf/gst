@@ -3,6 +3,19 @@
 locale_name: English
 flag: us.png
 
+menu: en
+
+#home tabs
+news: News
+success_stories: Success stories
+
+#city/show
+opinions: Opinions
+
+
+
+
+
 page_title: English Page Title
 change_language: Change the site Language to
 change: Change

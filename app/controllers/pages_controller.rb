@@ -1,7 +1,9 @@
 class PagesController < ApplicationController
+  before_filter :admin_required, :only => [:index,:new,:create,:edit,:update]
+
   def index
-    @pages=Page.find(:all)
-    render(:layout=>"admin")
+    @pages=Page.find(:all, :order => :ident_name)
+    #render(:layout=>"admin")
   end
 
   def new
@@ -17,7 +19,7 @@ class PagesController < ApplicationController
 
   def edit
     @page=Page.find(params[:id])
-    render(:layout=>"admin")
+    #render(:layout=>"admin")
   end
 
 
@@ -33,7 +35,7 @@ class PagesController < ApplicationController
     @page=Page.find_by_ident_name("home")
   end
 
-  def about
+  def about_us
     @page=Page.find_by_ident_name("about")
   end
 

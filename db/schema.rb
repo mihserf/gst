@@ -9,7 +9,51 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080715142124) do
+ActiveRecord::Schema.define(:version => 20080804081953) do
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.string   "lang"
+    t.string   "ident_name"
+    t.text     "body"
+    t.integer  "country_id"
+    t.integer  "num_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.string   "lang"
+    t.string   "ident_name"
+    t.text     "body"
+    t.integer  "num_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "opinion_photos", :force => true do |t|
+    t.integer  "opinion_id"
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "opinions", :force => true do |t|
+    t.string   "author"
+    t.string   "status"
+    t.string   "lang"
+    t.text     "body"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pages", :force => true do |t|
     t.string   "ident_name"

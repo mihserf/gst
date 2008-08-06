@@ -1,16 +1,42 @@
 ActionController::Routing::Routes.draw do |map|
-  map.with_options :controller => "pages" do |page|
-    page.home "/", :action =>  "home"
-    ["about","contacts","faq","charity","founder","team","mission","principles"].each do |action|  page.home "/#{action}", :action =>action   end
-    page.home ":lang", :action =>  "home"
-    page.home ":lang/:action"
-    
-  end
+ 
+ map.admin_login 'admin', :controller => 'admin', :action => 'index'
+ map.admin_login 'admin/login', :controller => 'admin', :action => 'login'
+ map.admin_logout 'admin/logout', :controller => 'admin', :action => 'logout'
+ 
 
-  map.with_options :path_prefix => ':lang' do |l|
-  l.resources :pages
+ map.resources :countries, :has_many  => :cities
+ # map.resources :cities
+
+  map.with_options :path_prefix => ':lang', :name_prefix => 'lang_' do |l|
+    l.resources :pages
+    l.resources :countries, :has_many  => :cities
+    l.resources :cities, :has_many => :opinions
+    l.resources :cities, :has_many => :members
+    l.resources :opinions
+    l.resources :members, :has_many => :member_statuses
+    l.resources :member_statuses, :has_many => :members
   end
   map.resources :pages
+  map.resources :countries, :has_many  => :cities
+  map.resources :cities, :has_many => :opinions
+  map.resources :cities, :has_many => :members
+  map.resources :opinions
+  map.resources :members, :has_many => :member_statuses
+  map.resources :member_statuses, :has_many => :members
+
+  map.with_options :controller => "pages" do |page|
+    page.home "/", :action =>  "home"
+    ["about_us","contacts","faq","charity","founder","team","mission","principles"].each do |action|  page.home "/#{action}", :action =>action   end
+    page.home ":lang/", :action =>  "home"
+    page.home ":lang/:action"
+
+  end
+
+  
+
+  
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -29,7 +55,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
