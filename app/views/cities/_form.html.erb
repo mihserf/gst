@@ -1,0 +1,23 @@
+<%= javascript_include_tag :fckeditor %>
+
+<h3>Страна <%=@country.name%> (<%=lang_id(@country.lang)%>)</h3>
+<% form_for [@country,@city] do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :lang%>
+  <p>
+    <%= f.label 'Идентификатор (одинаковый для всех языковых версий и только строчными латинскими буквами!)' %><br />
+    <%= f.text_field :ident_name %>
+  </p>
+  <p>
+    <%= f.label 'Название' %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label 'Текст' %><br />
+    <%= fckeditor_textarea(:city, :body, :toolbarSet => 'Simple', :width => '100%', :height => '300px') %>
+  </p>
+  <p>
+    <%= f.submit "Сохранить" %>
+  </p>
+<% end %>
+
