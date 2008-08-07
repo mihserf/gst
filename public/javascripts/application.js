@@ -48,6 +48,7 @@ if (browser_name=="Microsoft Internet Explorer") ie=true;
 $(document).ready(function(){
 	//$(".top_img").hide();
 	//$("#top_img2").fadeIn(3000, function(){$(this).fadeOut(3000);});
+        
 	$("#top_imgs").cycle({
 		fx:'fade',
 		speed: 2000,

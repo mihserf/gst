@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080804081953) do
+ActiveRecord::Schema.define(:version => 20080806123741) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,25 @@ ActiveRecord::Schema.define(:version => 20080804081953) do
     t.string   "ident_name"
     t.text     "body"
     t.integer  "num_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "member_statuses", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "members", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_name"
+    t.string   "status"
+    t.integer  "city_id"
+    t.string   "lang"
+    t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +79,16 @@ ActiveRecord::Schema.define(:version => 20080804081953) do
     t.string   "name"
     t.string   "lang"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.string   "name"
+    t.string   "status"
+    t.integer  "number"
+    t.string   "lang"
+    t.string   "ident_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

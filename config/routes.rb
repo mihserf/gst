@@ -14,16 +14,16 @@ ActionController::Routing::Routes.draw do |map|
     l.resources :cities, :has_many => :opinions
     l.resources :cities, :has_many => :members
     l.resources :opinions
-    l.resources :members, :has_many => :member_statuses
-    l.resources :member_statuses, :has_many => :members
+    l.resources :members, :has_many => :statuses
+    l.resources :statuses, :has_many => :members
   end
   map.resources :pages
   map.resources :countries, :has_many  => :cities
   map.resources :cities, :has_many => :opinions
   map.resources :cities, :has_many => :members
   map.resources :opinions
-  map.resources :members, :has_many => :member_statuses
-  map.resources :member_statuses, :has_many => :members
+  map.resources :members, :has_many => :statuses
+  map.resources :statuses, :has_many => :members
 
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"

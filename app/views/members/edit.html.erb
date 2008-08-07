@@ -1,2 +1,8 @@
-<h1>Members#edit</h1>
-<p>Find me in app/views/members/edit.html.erb</p>
+ <%=tabs(:tab1=>"Изменение члена")%>
+
+
+<%= render :partial => "form" %>
+<p>
+<%= link_to 'Показать', @member %> |
+<%= link_to 'Обратно', members_path %>
+</p>

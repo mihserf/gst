@@ -1,0 +1,73 @@
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#member_lang").change( function(){
+                  $.getJSON("/cities", { lang: $(this).attr("value") },  function(data){
+                    var options="";
+                    $.each(data, function(i, item){
+                       selected = ""
+                       if (item.city.id==<%=@member.city_id%>) selected="selected"
+                       options+="<option value='"+item.city.id+"' "+selected+">"+item.city.name+"</option>";
+                    });
+                    $("#member_city_id").html(options);
+                    } );
+                    
+                   $.getJSON("/statuses", { lang: $(this).attr("value") },  function(data){
+                    var options="";
+                    $.each(data, function(i, item){
+                       selected = ""
+                       <%@member.statuses.find(:all).collect(&:id).each do |status_id| %>
+                       if (item.status.id==<%=status_id%>) selected="selected"
+                       <%end%>
+                       options+="<option value='"+item.status.id+"' "+selected+">"+item.status.name+"</option>";
+                    });
+                    $("#status_id").html(options);
+                    } );
+
+              });
+  $("#member_lang").trigger("change");
+});
+</script>
+
+<% form_for(@member) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label 'Язык' %><br />
+    <%= f.select(:lang,   Globalite.ui_locales, {:selected => (@member.lang.to_sym unless @member.lang.nil?)}) %>
+  </p>
+
+  <p>
+    <%= f.label 'Имя' %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label 'Фамилия' %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label 'Отчество' %><br />
+    <%= f.text_field :middle_name %>
+  </p>
+
+  <p>
+    <%= f.label 'Статус' %><br />
+    <%= f.text_field :status %>
+  </p>
+
+  <p>
+    <%= f.label 'Статус' %><br />
+    <%= select("status", "id", Status.find(:all, :order => "ident_name,name").collect{|c| [c.name, c.id]}) %>
+  </p>
+
+  <p>
+    <%= f.label 'Город' %><br />
+    <%= f.select(:city_id, City.find(:all, :order => "ident_name,name").collect{|c| [c.name, c.id]}) %>
+  </p>
+
+  
+  
+  <p>
+    <%= f.submit "Сохранить" %>
+  </p>
+<% end %>
+

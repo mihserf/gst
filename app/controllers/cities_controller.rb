@@ -3,11 +3,13 @@ class CitiesController < ApplicationController
   # GET /cities
   # GET /cities.xml
   def index
-    @cities = City.find(:all)
+    @cities = City.find(:all, :conditions => {:lang =>params[:lang]})
+    @cities = City.find(:all, :conditions => {:lang =>@lang.to_s}) if @cities.empty? 
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @cities }
+      format.js  { render  :json => @cities.to_json }
     end
   end
 
@@ -87,4 +89,6 @@ class CitiesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
 end

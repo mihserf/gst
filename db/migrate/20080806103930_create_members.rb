@@ -5,8 +5,9 @@ class CreateMembers < ActiveRecord::Migration
       t.string :last_name
       t.string :middle_name
       t.string :status
-      t.integer :city_id, :number
-
+      t.integer :city_id
+      t.string :lang
+      t.integer :number
       t.timestamps
     end
   end
