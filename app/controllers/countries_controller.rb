@@ -46,7 +46,7 @@ class CountriesController < ApplicationController
     respond_to do |format|
       if @country.save
         flash[:notice] = 'Country was successfully created.'
-        format.html { redirect_to(@country) }
+        format.html { redirect_to countries_path }
         format.xml  { render :xml => @country, :status => :created, :location => @country }
       else
         format.html { render :action => "new" }

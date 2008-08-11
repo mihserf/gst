@@ -5,8 +5,7 @@
   <%= f.error_messages %>
   <%= f.hidden_field :lang%>
   <p>
-    <%= f.label 'Идентификатор (одинаковый для всех языковых версий и только строчными латинскими буквами!)' %><br />
-    <%= f.text_field :ident_name %>
+    <%=ident_choice(@city)%>
   </p>
   <p>
     <%= f.label 'Название' %><br />

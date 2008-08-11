@@ -7,6 +7,8 @@ class CreateMembers < ActiveRecord::Migration
       t.string :status
       t.integer :city_id
       t.string :lang
+      t.integer :ident_num
+      t.string :ident_name
       t.integer :number
       t.timestamps
     end

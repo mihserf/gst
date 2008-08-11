@@ -49,6 +49,8 @@ module ApplicationHelper
     render  :partial  =>  "shared/lang_choice", :locals => {:langs => langs}
   end
 
-  
+  def ident_choice(obj)
+     render :partial => "shared/ident_choice", :locals => {:obj => obj, :obj_name => obj.class.to_s.downcase!}
+  end
 
 end

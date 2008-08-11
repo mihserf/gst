@@ -17,9 +17,12 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
+    params[:member][:status_ids] ||= []
+    @member.attributes = params[:member]
+    params[:member_photo][:member_ident_num] = @member.ident_num unless params[:member_photo].nil?
+    @member.build_member_photo(params[:member_photo])
     respond_to do |format|
-      if @member.update_attributes(params[:member])
-        @member.statuses<<Status.find(params[:status][:id])
+      if @member.save!
         flash[:notice] = 'Член изменён.'
         format.html { redirect_to members_path }
         format.xml  { head :ok }
@@ -36,10 +39,12 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
-        
+    @member.assign_idents
+    params[:member_photo][:member_ident_num] = @member.ident_num unless params[:member_photo].nil?
+    @member.build_member_photo(params[:member_photo])
+  
     respond_to do |format|
       if @member.save
-        @member.statuses<<Status.find(params[:status][:id])
         flash[:notice] = 'Член добавлен.'
         format.html { redirect_to members_path }
         format.xml  { render :xml => @member, :status => :created, :location => @member }

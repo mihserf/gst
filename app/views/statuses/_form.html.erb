@@ -9,8 +9,7 @@
   </p>
 
   <p>
-    <%= f.label 'Идентификатор (одинаковый для всех языковых версий и только строчными латинскими буквами!)' %><br />
-    <%= f.text_field :ident_name %>
+    <%=ident_choice(@city)%>
   </p>
 
   <p>
@@ -22,11 +21,12 @@
     <%= f.text_field :status %>
   </p>
   
-    <p>
+  <p>
     <%= f.label 'порядковый номер отображения в списке' %><br />
     <%numbers=[]; 1.upto(Status.count(:conditions => "lang='#{@lang.to_s}'")) {|i| numbers << i}%>
     <%= f.select(:number, numbers) %>
   </p>
+
   <p>
     <%= f.submit "Сохранить" %>
   </p>

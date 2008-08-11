@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080806123741) do
+ActiveRecord::Schema.define(:version => 20080809174016) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,21 @@ ActiveRecord::Schema.define(:version => 20080806123741) do
     t.text     "body"
     t.integer  "country_id"
     t.integer  "num_order"
+    t.integer  "ident_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "city_photos", :force => true do |t|
+    t.integer  "city_id"
+    t.integer  "city_ident_num"
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,6 +43,21 @@ ActiveRecord::Schema.define(:version => 20080806123741) do
     t.string   "ident_name"
     t.text     "body"
     t.integer  "num_order"
+    t.integer  "ident_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "member_photos", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "member_ident_num"
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,6 +76,8 @@ ActiveRecord::Schema.define(:version => 20080806123741) do
     t.string   "status"
     t.integer  "city_id"
     t.string   "lang"
+    t.integer  "ident_num"
+    t.string   "ident_name"
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -70,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20080806123741) do
     t.string   "lang"
     t.text     "body"
     t.integer  "city_id"
+    t.integer  "ident_num"
+    t.string   "ident_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,6 +123,18 @@ ActiveRecord::Schema.define(:version => 20080806123741) do
     t.integer  "number"
     t.string   "lang"
     t.string   "ident_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "success_stories", :force => true do |t|
+    t.string   "title"
+    t.text     "short_text"
+    t.text     "body"
+    t.integer  "member_id"
+    t.string   "lang"
+    t.string   "ident_name"
+    t.integer  "ident_num"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

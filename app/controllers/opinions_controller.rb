@@ -15,9 +15,10 @@ class OpinionsController < ApplicationController
     @opinion = Opinion.new(params[:opinion])
     @city = City.find(params[:city_id])
     @opinion.city_id,@opinion.lang=@city.id,@city.lang
+    params[:opinion_photo][:opinion_ident_num] = @member.ident_num unless params[:opinion_photo].nil?
+    @opinion.build_opinion_photo(params[:opinion_photo])
     respond_to do |format|
       if @opinion.save
-        @opinion.opinion_photo = OpinionPhoto.new(params[:opinion_photo])
         flash[:notice] = 'Отзыв добавлен.'
         format.html { redirect_to countries_path }
         format.xml  { render :xml => @opinion, :status => :created, :location => @opinion }
@@ -35,6 +36,7 @@ class OpinionsController < ApplicationController
 
   def update
     @opinion = Opinion.find(params[:id])
+    params[:opinion_photo][:opinion_ident_num] = @member.ident_num unless params[:opinion_photo].nil?
     @opinion.opinion_photo.update_attributes(params[:opinion_photo])
     respond_to do |format|
       if @opinion.update_attributes(params[:opinion])

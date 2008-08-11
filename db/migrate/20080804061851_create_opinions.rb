@@ -5,6 +5,8 @@ class CreateOpinions < ActiveRecord::Migration
       t.string :status, :lang
       t.text :body
       t.integer :city_id
+      t.integer :ident_num
+      t.string :ident_name
 
       t.timestamps
     end

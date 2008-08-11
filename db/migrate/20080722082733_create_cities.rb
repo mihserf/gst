@@ -4,7 +4,7 @@ class CreateCities < ActiveRecord::Migration
       t.string :name, :lang, :ident_name
       t.text :body
       t.integer :country_id, :num_order
-
+      t.integer :ident_num
       t.timestamps
     end
   end

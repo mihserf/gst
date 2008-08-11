@@ -5,22 +5,23 @@ $(document).ready(function(){
                     var options="";
                     $.each(data, function(i, item){
                        selected = ""
-                       if (item.city.id==<%=@member.city_id%>) selected="selected"
+                       if (item.city.id==<%=@member.city_id || "-1"%>) selected="selected"
                        options+="<option value='"+item.city.id+"' "+selected+">"+item.city.name+"</option>";
                     });
                     $("#member_city_id").html(options);
                     } );
                     
-                   $.getJSON("/statuses", { lang: $(this).attr("value") },  function(data){
-                    var options="";
+                     $.getJSON("/statuses", { lang: $(this).attr("value") },  function(data){
+                    var check_boxes="";
                     $.each(data, function(i, item){
-                       selected = ""
+                       checked = ""
                        <%@member.statuses.find(:all).collect(&:id).each do |status_id| %>
-                       if (item.status.id==<%=status_id%>) selected="selected"
+                       if (item.status.id==<%=status_id%>) checked="checked"
                        <%end%>
-                       options+="<option value='"+item.status.id+"' "+selected+">"+item.status.name+"</option>";
+                       check_boxes+="<li><input value='"+item.status.id+"' type='checkbox' name='member[status_ids][]' "+checked+"/>"+item.status.status+"</li>";
                     });
-                    $("#status_id").html(options);
+                    $("#statuses").html(check_boxes);
+                    
                     } );
 
               });
@@ -28,12 +29,16 @@ $(document).ready(function(){
 });
 </script>
 
-<% form_for(@member) do |f| %>
+<% form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
 
   <p>
     <%= f.label 'Язык' %><br />
     <%= f.select(:lang,   Globalite.ui_locales, {:selected => (@member.lang.to_sym unless @member.lang.nil?)}) %>
+  </p>
+
+  <p>
+    <%=ident_choice(@member)%>
   </p>
 
   <p>
@@ -50,13 +55,30 @@ $(document).ready(function(){
   </p>
 
   <p>
-    <%= f.label 'Статус' %><br />
-    <%= f.text_field :status %>
+    <% fields_for MemberPhoto.new() do |member_f| %>
+    <%  photo = MemberPhoto.find(:last, :conditions => {:member_ident_num => @member.ident_num})  %>
+    <% unless  @member.new_record? || photo.nil? %>
+      <p><%= image_tag photo.public_filename(:view) %></p>
+    <%end%>
+    <%= member_f.file_field  :uploaded_data %>
+    <%end%>
+  </p>
+   
+  <p>
+    <%= f.label 'Статусы' %><br />
+    <ul style="list-style:none" id="statuses">
+    <%Status.find(:all, :order => "ident_name,name").each do |status| -%>
+        <li>
+        <%= check_box_tag("status_ids[]", status.id) %>
+        <%=status.status -%>
+        </li>
+    <%end-%>
+    </ul>
   </p>
 
   <p>
-    <%= f.label 'Статус' %><br />
-    <%= select("status", "id", Status.find(:all, :order => "ident_name,name").collect{|c| [c.name, c.id]}) %>
+    <%= f.label 'Дополнение к статусу' %><br />
+    <%= f.text_field :status %>
   </p>
 
   <p>

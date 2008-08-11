@@ -4,6 +4,7 @@ class CreateCountries < ActiveRecord::Migration
       t.string :name, :lang, :ident_name
       t.text :body
       t.integer :num_order
+      t.integer :ident_num
       t.timestamps
     end
   end
