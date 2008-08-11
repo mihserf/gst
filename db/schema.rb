@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080809174016) do
+ActiveRecord::Schema.define(:version => 20080811114749) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -123,6 +123,32 @@ ActiveRecord::Schema.define(:version => 20080809174016) do
     t.integer  "number"
     t.string   "lang"
     t.string   "ident_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stories", :force => true do |t|
+    t.integer  "member_id"
+    t.string   "lang"
+    t.string   "ident_name"
+    t.integer  "ident_num"
+    t.string   "title"
+    t.text     "short_text"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "story_photos", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "story_ident_num"
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

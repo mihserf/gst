@@ -3,6 +3,7 @@ class Member < ActiveRecord::Base
   has_many :statuses, :through => :member_statuses, :dependent => :destroy
   has_one :member_photo, :dependent => :destroy
   has_one :success_story, :dependent => :destroy
+  has_one :story, :dependent => :destroy
   belongs_to :city
 
   before_save :assign_idents
