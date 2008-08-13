@@ -9,7 +9,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080811114749) do
+ActiveRecord::Schema.define(:version => 20080813142055) do
+
+  create_table "articles", :force => true do |t|
+    t.integer  "num"
+    t.string   "title"
+    t.text     "short_text"
+    t.text     "body"
+    t.string   "lang"
+    t.string   "ident_name"
+    t.integer  "ident_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "charities", :force => true do |t|
+    t.integer  "num"
+    t.string   "title"
+    t.text     "short_text"
+    t.text     "body"
+    t.string   "lang"
+    t.string   "ident_name"
+    t.integer  "ident_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -21,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20080811114749) do
     t.integer  "ident_num"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "coord"
   end
 
   create_table "city_photos", :force => true do |t|
@@ -44,6 +69,44 @@ ActiveRecord::Schema.define(:version => 20080811114749) do
     t.text     "body"
     t.integer  "num_order"
     t.integer  "ident_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "num"
+    t.string   "title"
+    t.text     "short_text"
+    t.text     "body"
+    t.string   "lang"
+    t.string   "ident_name"
+    t.integer  "ident_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jim_articles", :force => true do |t|
+    t.integer  "num"
+    t.string   "title"
+    t.text     "short_text"
+    t.text     "body"
+    t.string   "lang"
+    t.string   "ident_name"
+    t.integer  "ident_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "maps", :force => true do |t|
+    t.integer  "country_id"
+    t.integer  "country_ident_num"
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -161,6 +224,20 @@ ActiveRecord::Schema.define(:version => 20080811114749) do
     t.string   "lang"
     t.string   "ident_name"
     t.integer  "ident_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "success_story_photos", :force => true do |t|
+    t.integer  "success_story_id"
+    t.integer  "success_story_ident_num"
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

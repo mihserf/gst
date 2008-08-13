@@ -42,6 +42,9 @@ class CountriesController < ApplicationController
   # POST /countries.xml
   def create
     @country = Country.new(params[:country])
+    @country.assign_idents
+    params[:map][:country_ident_num] = @country.ident_num unless params[:map].nil?
+    @country.build_map(params[:map]) unless params[:map].nil?
 
     respond_to do |format|
       if @country.save
@@ -59,9 +62,12 @@ class CountriesController < ApplicationController
   # PUT /countries/1.xml
   def update
     @country = Country.find(params[:id])
+    @country.attributes = params[:country]
+    params[:map][:country_ident_num] = @country.ident_num unless params[:map].nil?
+    @country.build_map(params[:map]) unless params[:map].nil?
 
     respond_to do |format|
-      if @country.update_attributes(params[:country])
+      if @country.save!
         flash[:notice] = 'Country was successfully updated.'
         format.html { redirect_to(@country) }
         format.xml  { head :ok }

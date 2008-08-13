@@ -1,2 +1,8 @@
-<h1>SuccessStories#edit</h1>
-<p>Find me in app/views/success_stories/edit.html.erb</p>
+ <%=tabs(:tab1=>"Изменение истории успеха")%>
+
+
+<%= render :partial => "form" %>
+<p>
+<%= link_to 'Показать', @story %> |
+<%= link_to 'Обратно', members_path %>
+</p>

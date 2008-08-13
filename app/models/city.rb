@@ -4,6 +4,8 @@ class City < ActiveRecord::Base
   has_many :members, :dependent => :destroy
   has_many :city_photos, :dependent => :destroy
 
+  serialize :coord
+
   before_save :assign_idents
   
 

@@ -20,7 +20,7 @@ class MembersController < ApplicationController
     params[:member][:status_ids] ||= []
     @member.attributes = params[:member]
     params[:member_photo][:member_ident_num] = @member.ident_num unless params[:member_photo].nil?
-    @member.build_member_photo(params[:member_photo])
+    @member.build_member_photo(params[:member_photo]) unless params[:member_photo].nil?
     respond_to do |format|
       if @member.save!
         flash[:notice] = 'Член изменён.'
@@ -41,7 +41,7 @@ class MembersController < ApplicationController
     @member = Member.new(params[:member])
     @member.assign_idents
     params[:member_photo][:member_ident_num] = @member.ident_num unless params[:member_photo].nil?
-    @member.build_member_photo(params[:member_photo])
+    @member.build_member_photo(params[:member_photo])  unless params[:member_photo].nil?
   
     respond_to do |format|
       if @member.save

@@ -18,6 +18,10 @@ ActionController::Routing::Routes.draw do |map|
     l.resources :stories
     l.resources :success_stories
     l.resources :statuses, :has_many => :members
+    l.resources :events
+    l.resources :articles
+    l.resources :charities
+    l.resources :jim_articles
   end
 
   map.resources :pages
@@ -29,6 +33,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :stories
   map.resources :success_stories
   map.resources :statuses, :has_many => :members
+  map.resources :events
+  map.resources :articles
+  map.resources :charities
+  map.resources :jim_articles
 
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"

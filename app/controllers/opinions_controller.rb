@@ -15,7 +15,8 @@ class OpinionsController < ApplicationController
     @opinion = Opinion.new(params[:opinion])
     @city = City.find(params[:city_id])
     @opinion.city_id,@opinion.lang=@city.id,@city.lang
-    params[:opinion_photo][:opinion_ident_num] = @member.ident_num unless params[:opinion_photo].nil?
+    @opinion.assign_idents
+    params[:opinion_photo][:opinion_ident_num] = @opinion.ident_num unless params[:opinion_photo].nil?
     @opinion.build_opinion_photo(params[:opinion_photo])
     respond_to do |format|
       if @opinion.save
@@ -37,7 +38,7 @@ class OpinionsController < ApplicationController
   def update
     @opinion = Opinion.find(params[:id])
     params[:opinion_photo][:opinion_ident_num] = @member.ident_num unless params[:opinion_photo].nil?
-    @opinion.opinion_photo.update_attributes(params[:opinion_photo])
+    @opinion.opinion_photo.update_attributes(params[:opinion_photo]) unless params[:opinion_photo].nil?
     respond_to do |format|
       if @opinion.update_attributes(params[:opinion])
         flash[:notice] = 'Отзыв изменён.'

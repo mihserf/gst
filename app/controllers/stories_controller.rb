@@ -52,7 +52,7 @@ class StoriesController < ApplicationController
     @member.story = @story
     respond_to do |format|
       if @member.save
-        flash[:notice] = 'Член добавлен.'
+        flash[:notice] = 'История добавлена.'
         format.html { redirect_to members_path }
         format.xml  { render :xml => @story, :status => :created, :location => @story }
       else

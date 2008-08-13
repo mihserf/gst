@@ -11,10 +11,18 @@
     <%= f.label 'Название' %><br />
     <%= f.text_field :name %>
   </p>
+
   <p>
     <%= f.label 'Текст' %><br />
     <%= fckeditor_textarea(:city, :body, :toolbarSet => 'Simple', :width => '100%', :height => '300px') %>
   </p>
+
+  <p>
+    <%= f.label 'Координаты' %><br />
+      x:<%= text_field_tag "city[coord][x]", (@city.coord[:x] rescue "")  %>
+      y:<%= text_field_tag "city[coord][y]", (@city.coord[:y] rescue "") %>
+  </p>
+
   <p>
     <%= f.submit "Сохранить" %>
   </p>
