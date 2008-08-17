@@ -49,6 +49,9 @@ class CitiesController < ApplicationController
     @country  = Country.find(params[:country_id])
 
     @city.country_id,@city.lang=@country.id,@country.lang
+    @city.assign_idents
+    managing_photos
+
     respond_to do |format|
       if @city.save
         flash[:notice] = 'Город добавлен.'
@@ -65,9 +68,14 @@ class CitiesController < ApplicationController
   # PUT /cities/1.xml
   def update
     @city = City.find(params[:id])
+    @city.attributes=params[:city]
+    @city_coord = CityCoord.find_or_create_by_city_ident_num(params[:city_coord][:city_ident_num])
+    @city_coord.attributes =params[:city_coord]
+    @city_coord.save
+    managing_photos
 
     respond_to do |format|
-      if @city.update_attributes(params[:city])
+      if @city.save!
         flash[:notice] = 'Город изменён.'
         format.html { redirect_to countries_path }
         format.xml  { head :ok }
@@ -88,6 +96,21 @@ class CitiesController < ApplicationController
       format.html { redirect_to(countries_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def managing_photos
+    params[:photos] ||= []
+    params[:photos].each do |photo|
+      photo[:city_ident_num]=@city.ident_num
+      @city.city_photos.build(photo) unless photo[:uploaded_data] == ""
+    end
+
+    params[:existing_photos] ||= []
+    params[:existing_photos].each_value do |photo|
+      @city_photo = CityPhoto.find(photo[:id])
+      @city_photo.update_attributes(photo) unless photo[:uploaded_data] == ""
+      @city_photo.update_attribute(:main,photo[:main])
+    end unless params[:existing_photos].empty?
   end
 
 

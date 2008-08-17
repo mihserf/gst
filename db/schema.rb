@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080813142055) do
+ActiveRecord::Schema.define(:version => 20080816142353) do
 
   create_table "articles", :force => true do |t|
     t.integer  "num"
@@ -48,6 +48,14 @@ ActiveRecord::Schema.define(:version => 20080813142055) do
     t.text     "coord"
   end
 
+  create_table "city_coords", :force => true do |t|
+    t.integer  "city_id"
+    t.integer  "city_ident_num"
+    t.text     "coord"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "city_photos", :force => true do |t|
     t.integer  "city_id"
     t.integer  "city_ident_num"
@@ -60,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20080813142055) do
     t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "main"
   end
 
   create_table "countries", :force => true do |t|
@@ -93,6 +102,14 @@ ActiveRecord::Schema.define(:version => 20080813142055) do
     t.string   "lang"
     t.string   "ident_name"
     t.integer  "ident_num"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "localedbs", :force => true do |t|
+    t.string   "short"
+    t.string   "code"
+    t.boolean  "master"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -180,6 +197,15 @@ ActiveRecord::Schema.define(:version => 20080813142055) do
     t.datetime "updated_at"
   end
 
+  create_table "status_translations", :force => true do |t|
+    t.integer  "localedb_id"
+    t.integer  "status_id"
+    t.string   "name"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "statuses", :force => true do |t|
     t.string   "name"
     t.string   "status"
@@ -188,6 +214,7 @@ ActiveRecord::Schema.define(:version => 20080813142055) do
     t.string   "ident_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ident_num"
   end
 
   create_table "stories", :force => true do |t|

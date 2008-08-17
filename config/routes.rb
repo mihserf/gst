@@ -38,6 +38,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :charities
   map.resources :jim_articles
 
+  map.resources :city_photos
+
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"
     ["about_us","contacts","faq","charity","founder","team","mission","principles"].each do |action|  page.home "/#{action}", :action =>action   end

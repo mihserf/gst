@@ -18,6 +18,7 @@ $(document).ready(function(){
                        <%@member.statuses.find(:all).collect(&:id).each do |status_id| %>
                        if (item.status.id==<%=status_id%>) checked="checked"
                        <%end%>
+
                        check_boxes+="<li><input value='"+item.status.id+"' type='checkbox' name='member[status_ids][]' "+checked+"/>"+item.status.status+"</li>";
                     });
                     $("#statuses").html(check_boxes);

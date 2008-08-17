@@ -14,8 +14,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.xml
   def show
-    @event = Event.find_by_ident_name_and_lang(params[:id],@lang.to_s) || Event.find(params[:id])
-    @events = Event.find_all_by_lang(@event.lang)
+    @event = Event.find_by_ident_name_and_lang(params[:id],@lang.to_s) || Event.find_by_ident_num_and_lang(params[:id],@lang.to_s) || Event.find(params[:id])
+    #@events = Event.find_all_by_lang(@event.lang)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @event }

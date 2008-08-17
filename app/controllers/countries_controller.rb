@@ -15,7 +15,7 @@ class CountriesController < ApplicationController
   # GET /countries/1.xml
   def show
     @country = Country.find_by_ident_name_and_lang(params[:id],@lang.to_s) || Country.find(params[:id])
-    @countries = Country.find_all_by_lang(@country.lang)
+    #@countries = Country.find_all_by_lang(@country.lang)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @country }
