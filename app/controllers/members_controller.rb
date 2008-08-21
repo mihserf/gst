@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   def index
-    @members = Member.find(:all, :order => "lang,last_name")
+    @members = Member.find(:all, :order => "last_name")
     
     respond_to do |format|
       format.html # index.html.erb
@@ -19,8 +19,15 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     params[:member][:status_ids] ||= []
     @member.attributes = params[:member]
-    params[:member_photo][:member_ident_num] = @member.ident_num unless params[:member_photo].nil?
-    @member.build_member_photo(params[:member_photo]) unless params[:member_photo].nil?
+    
+    unless params[:member_photo].nil?
+      if @member_photo=@member.member_photo
+        @member_photo.update_attributes(params[:member_photo])
+      else
+        @member.create_member_photo(params[:member_photo])
+      end
+    end
+
     respond_to do |format|
       if @member.save!
         flash[:notice] = 'Член изменён.'
@@ -39,8 +46,6 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
-    @member.assign_idents
-    params[:member_photo][:member_ident_num] = @member.ident_num unless params[:member_photo].nil?
     @member.build_member_photo(params[:member_photo])  unless params[:member_photo].nil?
   
     respond_to do |format|

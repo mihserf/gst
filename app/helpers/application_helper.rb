@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def menu_countries
     menu_countries_items=""
-    countries = Country.find(:all, :order => :num_order, :conditions => {:lang => @lang.to_s})
+    countries = Country.find(:all, :order => :num_order)
     for country in countries do
 	    menu_countries_items<< "<li>"
             menu_countries_items<< link_to(country.name, lang_country_path(lang_id(@lang),country.ident_name))
@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def countries_list(country)
-    countries = Country.find_all_by_lang(country.lang)
+    countries = Country.find(:all)
     render :partial => "shared/countries_list", :locals => {:countries => countries, :current_country => country}
   end
 

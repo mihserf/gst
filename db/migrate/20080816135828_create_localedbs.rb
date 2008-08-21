@@ -6,6 +6,9 @@ class CreateLocaledbs < ActiveRecord::Migration
       t.boolean :master
       t.timestamps
     end
+    Localedb.create!(:short=>"ru",:code=>"ru-RU",:master=>true)
+    Localedb.create!(:short=>"en",:code=>"en-*",:master=>false)
+    Localedb.create!(:short=>"ua",:code=>"ua-UA",:master=>false)
   end
 
   def self.down

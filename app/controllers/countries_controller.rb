@@ -14,7 +14,7 @@ class CountriesController < ApplicationController
   # GET /countries/1
   # GET /countries/1.xml
   def show
-    @country = Country.find_by_ident_name_and_lang(params[:id],@lang.to_s) || Country.find(params[:id])
+    @country = Country.find_by_ident_name(params[:id]) || Country.find(params[:id])
     #@countries = Country.find_all_by_lang(@country.lang)
     respond_to do |format|
       format.html # show.html.erb
@@ -26,6 +26,9 @@ class CountriesController < ApplicationController
   # GET /countries/new.xml
   def new
     @country = Country.new
+    Localedb.find(:all).each do |loc|
+      (@translations ||=[]) << @country.translations.build(:localedb_id =>loc.id)
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,8 +45,7 @@ class CountriesController < ApplicationController
   # POST /countries.xml
   def create
     @country = Country.new(params[:country])
-    @country.assign_idents
-    params[:map][:country_ident_num] = @country.ident_num unless params[:map].nil?
+    
     @country.build_map(params[:map]) unless params[:map].nil?
 
     respond_to do |format|
@@ -63,8 +65,15 @@ class CountriesController < ApplicationController
   def update
     @country = Country.find(params[:id])
     @country.attributes = params[:country]
-    params[:map][:country_ident_num] = @country.ident_num unless params[:map].nil?
     @country.build_map(params[:map]) unless params[:map].nil?
+
+    unless params[:map].nil?
+      if @map=@country.map
+        @map.update_attributes(params[:map])
+      else
+        @country.create_map(params[:map])
+      end
+    end
 
     respond_to do |format|
       if @country.save!

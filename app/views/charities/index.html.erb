@@ -1,17 +1,19 @@
 
 <%=tabs(:tab1=>"Список статей")%>
 
-
-
+<%@locales=Localedb.find(:all)%>
 
 
 <table class="admin_table">
   
 <% for charity in @charities %>
   <tr>
-    <td><%=lang_id(charity.lang)%></td>
-    <td><%= link_to charity.title, lang_charity_path(lang_id(charity.lang),charity.ident_num) %></td>
-    <td><%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_charity_path(charity) %></td>
+    <td><%= link_to charity.title, lang_charity_path(lang_id(@lang),charity) %></td>
+    <td>
+        <%@locales.each do |loc|%>
+            <%=loc.short%><%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_lang_charity_path(loc.short,charity) %>
+        <%end%>
+    </td>
     <td><%= link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), charity, :confirm => 'Подтвердите удаление', :method => :delete %></td>
   </tr>
 <% end %>

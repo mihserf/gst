@@ -4,7 +4,7 @@ class CreateStatusTranslations < ActiveRecord::Migration
       t.integer :localedb_id
       t.integer :status_id
       t.string :name
-      t.string :status
+      t.string :status_name
 
       t.timestamps
     end

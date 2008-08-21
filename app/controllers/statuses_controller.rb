@@ -1,11 +1,7 @@
 class StatusesController < ApplicationController
   def index
-    if params[:lang]
-      @statuses = Status.find(:all, :order => "number", :conditions => {:lang => params[:lang]})
-    else
-      @statuses = Status.find(:all, :order => "lang,number")
-    end
-
+      @statuses = Status.find(:all, :order => "number")
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @statuses }
@@ -22,7 +18,9 @@ class StatusesController < ApplicationController
 
   def update
     @status = Status.find(params[:id])
+    #managing_translations(@status)
     respond_to do |format|
+      #if (@status.update_attributes(params[:status]) && @status.translations.update_attributes(params[:translations]))
       if @status.update_attributes(params[:status])
         flash[:notice] = 'Член изменён.'
         format.html { redirect_to statuses_path }
@@ -40,6 +38,7 @@ class StatusesController < ApplicationController
 
   def create
     @status = Status.new(params[:status])
+    #managing_translations(@status)
     respond_to do |format|
       if @status.save
         flash[:notice] = 'Член добавлен.'
@@ -61,4 +60,8 @@ class StatusesController < ApplicationController
     end
   end
 
+  
 end
+
+
+

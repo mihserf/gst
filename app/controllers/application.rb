@@ -30,7 +30,15 @@ class ApplicationController < ActionController::Base
     redirect_to admin_login_path
   end
 
-
+  def managing_translations(obj)
+    params[:translations] ||= []
+    if obj.new_record?
+      obj.translations.build(params[:translations])
+    else
+      obj.translations.update(params[:translations].keys,params[:translations].values) unless params[:translations].empty?
+    end
+    
+  end
 
 
   # Set the locale from the parameters, the session, or the navigator
@@ -47,22 +55,28 @@ class ApplicationController < ActionController::Base
 	params_locale_code = 'en-*'
       when 'ru'
         params_locale_code = 'ru-RU'
+      when 'ua'
+        params_locale_code = 'ua-UA'
       end
     end
 
     if params_locale_code
         logger.debug "[globalite] #{params_locale_code} locale passed"
         Locale.code = params_locale_code #get_matching_ui_locale(plocale_code) #|| session[:locale] || get_valid_lang_from_accept_header || Globalite.default_language
+        #Localedb.global= params_locale_code
         # Store the locale in the session
         session[:lang] = Locale.code
     elsif session[:lang]
         logger.debug "[globalite] loading locale: #{session[:lang]} from session"
         Locale.code = session[:lang]
+        #Localedb.global = session[:lang]
     else
         logger.debug "[globalite] found a valid http header locale: #{get_valid_lang_from_accept_header}"
         Locale.code = get_valid_lang_from_accept_header
+        #Localedb.global = get_valid_lang_from_accept_header
     end
     @lang=Locale.code #@lang used in controllers and views
+    Localedb.global=Locale.code.to_s
     logger.debug "[globalite] Locale set to #{Locale.code}"
     # render the page
     yield

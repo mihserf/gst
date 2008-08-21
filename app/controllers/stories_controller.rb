@@ -19,12 +19,18 @@ class StoriesController < ApplicationController
 
   def update
     @story = @member.story
-    params[:story][:lang]=@member.lang
     params[:story][:ident_name]=@member.ident_name+'_story'
-    params[:story][:ident_num]=@member.ident_num
     @story.attributes = params[:story]
-    params[:story_photo][:story_ident_num] = @story.ident_num unless params[:story_photo].nil?
-    @story.build_story_photo(params[:story_photo])
+    
+    unless params[:story_photo].nil?
+      if @story_photo=@story.story_photo
+        @story_photo.update_attributes(params[:story_photo])
+      else
+        @story.create_story_photo(params[:story_photo])
+      end
+    end
+
+    
     respond_to do |format|
       if @story.save!
         flash[:notice] = 'История изменена.'
@@ -39,16 +45,14 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
-    @member = Member.find(params[:member_id])
+    
   end
 
   def create
-    params[:story][:lang]=@member.lang
     params[:story][:ident_name]=@member.ident_name+'_story'
-    params[:story][:ident_num]=@member.ident_num
+    
     @story = Story.new(params[:story])
-    params[:story_photo][:story_ident_num] = @story.ident_num unless params[:story_photo].nil?
-    @story.build_story_photo(params[:story_photo])
+    @story.build_story_photo(params[:story_photo]) unless params[:story_photo].nil?
     @member.story = @story
     respond_to do |format|
       if @member.save
@@ -66,7 +70,7 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
     @story.destroy
     respond_to do |format|
-      format.html { redirect_to(stories_url) }
+      format.html { redirect_to(members_url) }
       format.xml  { head :ok }
     end
   end

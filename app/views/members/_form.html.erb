@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
-  $("#member_lang").change( function(){
+  /*$("#member_lang").change( function(){
                   $.getJSON("/cities", { lang: $(this).attr("value") },  function(data){
                     var options="";
                     $.each(data, function(i, item){
@@ -27,37 +27,41 @@ $(document).ready(function(){
 
               });
   $("#member_lang").trigger("change");
+  */
 });
 </script>
-
+Язык <b><%=Localedb.global.short%></b>
 <% form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label 'Язык' %><br />
-    <%= f.select(:lang,   Globalite.ui_locales, {:selected => (@member.lang.to_sym unless @member.lang.nil?)}) %>
-  </p>
+  
 
   <p>
     <%=ident_choice(@member)%>
   </p>
 
-  <p>
-    <%= f.label 'Имя' %><br />
-    <%= f.text_field :first_name %>
-  </p>
-  <p>
-    <%= f.label 'Фамилия' %><br />
-    <%= f.text_field :last_name %>
-  </p>
-  <p>
-    <%= f.label 'Отчество' %><br />
-    <%= f.text_field :middle_name %>
-  </p>
+
+    <p>
+      <%= f.label 'Имя' %><br />
+      <%= f.text_field :first_name %>
+    </p>
+    <p>
+      <%= f.label 'Фамилия' %><br />
+      <%= f.text_field :last_name %>
+    </p>
+    <p>
+      <%= f.label 'Отчество' %><br />
+      <%= f.text_field :middle_name %>
+    </p>
+    <p>
+      <%= f.label 'Дополнение к статусу' %><br />
+      <%= f.text_field :status %>
+    </p>
+    
 
   <p>
     <% fields_for MemberPhoto.new() do |member_f| %>
-    <%  photo = MemberPhoto.find(:last, :conditions => {:member_ident_num => @member.ident_num})  %>
+    <%  photo = @member.member_photo  %>
     <% unless  @member.new_record? || photo.nil? %>
       <p><%= image_tag photo.public_filename(:view) %></p>
     <%end%>
@@ -67,25 +71,25 @@ $(document).ready(function(){
 
     
   <p>
+    
     <%= f.label 'Статусы' %><br />
     <ul style="list-style:none" id="statuses">
-    <%Status.find(:all, :order => "ident_name,name").each do |status| -%>
+    <%member_statuses=@member.statuses.collect(&:id)%>
+    <%for status in Status.find(:all, :order => "name") %>
         <li>
-        <%= check_box_tag("status_ids[]", status.id) %>
-        <%=status.status -%>
+        <%checked = !member_statuses.find{|it| it==status.id}.nil?%>
+        <%= check_box_tag("member[status_ids][]", status.id, checked) %>
+        <%=status.name -%>
         </li>
-    <%end-%>
+    <%end%>
     </ul>
   </p>
 
-  <p>
-    <%= f.label 'Дополнение к статусу' %><br />
-    <%= f.text_field :status %>
-  </p>
+  
 
   <p>
     <%= f.label 'Город' %><br />
-    <%= f.select(:city_id, City.find(:all, :order => "ident_name,name").collect{|c| [c.name, c.id]}) %>
+    <%= f.select(:city_id, City.find(:all, :order => "name").collect{|c| [c.name, c.id]}) %>
   </p>
 
   

@@ -1,6 +1,7 @@
 
 <%=tabs(:tab1=>"Список новостей")%>
 
+<%@locales=Localedb.find(:all)%>
 
 
 
@@ -9,9 +10,12 @@
   
 <% for event in @events %>
   <tr>
-    <td><%=lang_id(event.lang)%></td>
-    <td><%= link_to event.title, lang_event_path(lang_id(event.lang),event.ident_num) %></td>
-    <td><%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_event_path(event) %></td>
+    <td><%= link_to event.title, lang_event_path(lang_id(@lang),event) %></td>
+    <td>
+        <%@locales.each do |loc|%>
+            <%=loc.short%><%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_lang_event_path(loc.short,event) %>
+        <%end%>
+    </td>
     <td><%= link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), event, :confirm => 'Подтвердите удаление', :method => :delete %></td>
   </tr>
 <% end %>

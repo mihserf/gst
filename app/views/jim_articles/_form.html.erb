@@ -1,11 +1,9 @@
 <%= javascript_include_tag :fckeditor %>
+
+Язык <%= Localedb.global.short %><br>
+
 <% form_for(@jim_article, :html => { :multipart => true } ) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label 'Язык' %><br />
-    <%= f.select(:lang,   Globalite.ui_locales, {:selected => (@jim_article.lang.to_sym unless @jim_article.lang.nil?)}) %>
-  </p>
 
   <p>
     <%=ident_choice(@jim_article)%>

@@ -3,7 +3,7 @@
 <% form_for @success_story, :url => member_success_story_path(@member.id), :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
 
-  Язык <%= lang_id(@member.lang) %><br>
+  Язык <%= Localedb.global.short %><br>
   Автор  <%= @member.name %>
   
   
@@ -22,7 +22,7 @@
 
   <p>
     <% fields_for SuccessStoryPhoto.new() do |success_story_f| %>
-    <%  photo = SuccessStoryPhoto.find(:last, :conditions => {:success_story_ident_num => @success_story.ident_num})  %>
+    <%  photo = @success_story.success_story_photo  %>
     <% unless  @success_story.new_record? || photo.nil? %>
       <p><%= image_tag photo.public_filename(:view) %></p>
     <%end%>

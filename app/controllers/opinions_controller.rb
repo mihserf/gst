@@ -1,9 +1,9 @@
 class OpinionsController < ApplicationController
   before_filter :admin_required, :except => [:show]
-
+  before_filter :get_member, :except => [:index, :destroy]
+  
   def new
-    @city  = City.find_by_id_and_lang(params[:city_id],params[:lang])
-    @opinion = Opinion.new(:lang => @city.lang)
+    @opinion = Opinion.new
     
     respond_to do |format|
       format.html # new.html.erb
@@ -12,16 +12,15 @@ class OpinionsController < ApplicationController
   end
 
   def create
+    params[:opinion][:ident_name]=@member.ident_name+'_opinion'
     @opinion = Opinion.new(params[:opinion])
-    @city = City.find(params[:city_id])
-    @opinion.city_id,@opinion.lang=@city.id,@city.lang
-    @opinion.assign_idents
-    params[:opinion_photo][:opinion_ident_num] = @opinion.ident_num unless params[:opinion_photo].nil?
-    @opinion.build_opinion_photo(params[:opinion_photo])
+    
+    @member.opinion = @opinion
+
     respond_to do |format|
-      if @opinion.save
+      if @member.save
         flash[:notice] = 'Отзыв добавлен.'
-        format.html { redirect_to countries_path }
+        format.html { redirect_to members_path }
         format.xml  { render :xml => @opinion, :status => :created, :location => @opinion }
        else
         format.html { render :action => "new" }
@@ -31,18 +30,18 @@ class OpinionsController < ApplicationController
   end
 
   def edit
-    @opinion = Opinion.find(params[:id])
-    @city = City.find(params[:city_id])
+    @opinion = @member.opinion
   end
 
   def update
-    @opinion = Opinion.find(params[:id])
-    params[:opinion_photo][:opinion_ident_num] = @member.ident_num unless params[:opinion_photo].nil?
-    @opinion.opinion_photo.update_attributes(params[:opinion_photo]) unless params[:opinion_photo].nil?
+    @opinion = @member.opinion
+    params[:opinion][:ident_name]=@member.ident_name+'_opinion'
+    @opinion.attributes = params[:opinion]
+
     respond_to do |format|
-      if @opinion.update_attributes(params[:opinion])
+      if @opinion.save!
         flash[:notice] = 'Отзыв изменён.'
-        format.html { redirect_to countries_path }
+        format.html { redirect_to members_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -63,4 +62,8 @@ class OpinionsController < ApplicationController
     end
   end
 
+  def get_member
+    @member = Member.find(params[:member_id])
+  end
+  
 end

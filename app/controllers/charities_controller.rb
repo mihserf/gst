@@ -14,7 +14,7 @@ class CharitiesController < ApplicationController
   # GET /charities/1
   # GET /charities/1.xml
   def show
-    @charity = Charity.find_by_ident_name_and_lang(params[:id],@lang.to_s) || Charity.find_by_ident_num_and_lang(params[:id],@lang.to_s) || Charity.find(params[:id])
+    @charity = Charity.find_by_ident_name(params[:id]) || Charity.find(params[:id])
     #@charities = Charity.find_all_by_lang(@charity.lang)
     respond_to do |format|
       format.html # show.html.erb

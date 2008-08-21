@@ -14,7 +14,7 @@ class JimArticlesController < ApplicationController
   # GET /jim_articles/1
   # GET /jim_articles/1.xml
   def show
-    @jim_article = JimArticle.find_by_ident_name_and_lang(params[:id],@lang.to_s) || JimArticle.find_by_ident_num_and_lang(params[:id],@lang.to_s) || JimArticle.find(params[:id])
+    @jim_article = JimArticle.find_by_ident_name(params[:id]) || JimArticle.find(params[:id])
     #@jim_articles = JimArticle.find_all_by_lang(@jim_article.lang)
     respond_to do |format|
       format.html # show.html.erb

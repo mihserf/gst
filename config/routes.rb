@@ -8,13 +8,12 @@ ActionController::Routing::Routes.draw do |map|
  map.resources :countries, :has_many  => :cities
  # map.resources :cities
 
-  map.with_options :path_prefix => ':lang', :lang => /ru|en/, :name_prefix => 'lang_' do |l|
+  map.with_options :path_prefix => ':lang', :lang => /ru|en|ua/, :name_prefix => 'lang_' do |l|
     l.resources :pages
     l.resources :countries, :has_many  => :cities
-    l.resources :cities, :has_many => :opinions
     l.resources :cities, :has_many => :members
     l.resources :opinions
-    l.resources :members, :has_many => :statuses, :has_one => [:story, :success_story]
+    l.resources :members, :has_many => :statuses, :has_one => [:story, :success_story, :opinion]
     l.resources :stories
     l.resources :success_stories
     l.resources :statuses, :has_many => :members
@@ -22,14 +21,15 @@ ActionController::Routing::Routes.draw do |map|
     l.resources :articles
     l.resources :charities
     l.resources :jim_articles
+    l.resources :projects
+    l.resources :albums
   end
 
   map.resources :pages
   map.resources :countries, :has_many  => :cities
-  map.resources :cities, :has_many => :opinions
   map.resources :cities, :has_many => :members
   map.resources :opinions
-  map.resources :members, :has_many => :statuses, :has_one => [:story, :success_story]
+  map.resources :members, :has_many => :statuses, :has_one => [:story, :success_story, :opinion]
   map.resources :stories
   map.resources :success_stories
   map.resources :statuses, :has_many => :members
@@ -37,13 +37,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :articles
   map.resources :charities
   map.resources :jim_articles
-
+  map.resources :projects
+  map.resources :albums
   map.resources :city_photos
 
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"
     ["about_us","contacts","faq","charity","founder","team","mission","principles"].each do |action|  page.home "/#{action}", :action =>action   end
-    page.home ":lang/", :action =>  "home", :lang => /ru|en/
+    page.home ":lang/", :action =>  "home", :lang => /ru|en|ua/
     page.home ":lang/:action"
 
   end

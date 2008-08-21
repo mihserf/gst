@@ -2,8 +2,7 @@ class CreateMaps < ActiveRecord::Migration
   def self.up
     create_table :maps do |t|
       t.integer :country_id
-      t.integer :country_ident_num
-
+     
       t.integer  :size  # file size in bytes
       t.string :content_type    # mime type, ex: application/mp3
       t.string :filename   # sanitized filename

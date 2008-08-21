@@ -1,10 +1,12 @@
 class CreateCountries < ActiveRecord::Migration
   def self.up
     create_table :countries do |t|
-      t.string :name, :lang, :ident_name
+      t.string :name
       t.text :body
+      
+      t.string   :ident_name
       t.integer :num_order
-      t.integer :ident_num
+      
       t.timestamps
     end
   end

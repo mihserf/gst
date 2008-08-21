@@ -2,8 +2,7 @@ class CreateSuccessStoryPhotos < ActiveRecord::Migration
   def self.up
     create_table :success_story_photos do |t|
       t.integer :success_story_id
-      t.integer :success_story_ident_num
-
+      
       t.integer  :size  # file size in bytes
       t.string :content_type    # mime type, ex: application/mp3
       t.string :filename   # sanitized filename

@@ -2,8 +2,9 @@ class CreateCityPhotos < ActiveRecord::Migration
   def self.up
     create_table :city_photos do |t|
       t.integer :city_id
-      t.integer :city_ident_num
       
+      t.string :description
+
       t.integer  :size  # file size in bytes
       t.string :content_type    # mime type, ex: application/mp3
       t.string :filename   # sanitized filename

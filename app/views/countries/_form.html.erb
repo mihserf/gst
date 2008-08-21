@@ -1,12 +1,9 @@
 <%= javascript_include_tag :fckeditor %>
+
 <% form_for(@country, :html => { :multipart => true } ) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label 'Язык' %><br />
-    <%= f.select(:lang,   Globalite.ui_locales, {:selected => (@country.lang.to_sym unless @country.lang.nil?)}) %>
-  </p>
-
+Язык <b><%=Localedb.global.short%></b>
+  
   <p>
     <%=ident_choice(@country)%>
   </p>
@@ -21,7 +18,7 @@
 
   <p> карта:<br>
     <% fields_for Map.new() do |country_f| %>
-    <%  map = Map.find(:last, :conditions => {:country_ident_num => @country.ident_num})  %>
+    <%  map = @country.map  %>
     <% unless  @country.new_record? || map.nil? %>
       <p><%= image_tag map.public_filename(:view) %></p>
     <%end%>

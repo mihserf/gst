@@ -5,10 +5,8 @@ class CreateCharities < ActiveRecord::Migration
       t.string :title
       t.text :short_text
       t.text :body
-      t.string :lang
       t.string :ident_name
-      t.integer :ident_num
-
+      
       t.timestamps
     end
   end

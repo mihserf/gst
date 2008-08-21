@@ -2,8 +2,7 @@ class CreateMemberPhotos < ActiveRecord::Migration
   def self.up
     create_table :member_photos do |t|
       t.integer :member_id
-      t.integer :member_ident_num
-
+      
       t.integer  :size  # file size in bytes
       t.string :content_type    # mime type, ex: application/mp3
       t.string :filename   # sanitized filename
