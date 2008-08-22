@@ -7,7 +7,7 @@ class CreateMemberTranslations < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :middle_name
-      t.string :status
+      t.string :status_additional
 
       t.timestamps
     end

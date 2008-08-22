@@ -9,11 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080821174448) do
+ActiveRecord::Schema.define(:version => 20080822075556) do
+
+  create_table "album_photo_translations", :force => true do |t|
+    t.string   "description"
+    t.integer  "localedb_id"
+    t.integer  "album_photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "album_photos", :force => true do |t|
     t.integer  "album_id"
     t.string   "description"
+    t.boolean  "main"
     t.integer  "size"
     t.string   "content_type"
     t.string   "filename"
@@ -21,6 +30,15 @@ ActiveRecord::Schema.define(:version => 20080821174448) do
     t.integer  "width"
     t.integer  "parent_id"
     t.string   "thumbnail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "album_translations", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "localedb_id"
+    t.integer  "album_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -282,9 +300,18 @@ ActiveRecord::Schema.define(:version => 20080821174448) do
     t.datetime "updated_at"
   end
 
+  create_table "project_photo_translations", :force => true do |t|
+    t.string   "description"
+    t.integer  "localedb_id"
+    t.integer  "project_photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "project_photos", :force => true do |t|
     t.integer  "project_id"
     t.string   "description"
+    t.boolean  "main"
     t.integer  "size"
     t.string   "content_type"
     t.string   "filename"
@@ -292,6 +319,15 @@ ActiveRecord::Schema.define(:version => 20080821174448) do
     t.integer  "width"
     t.integer  "parent_id"
     t.string   "thumbnail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_translations", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "localedb_id"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

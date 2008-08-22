@@ -40,6 +40,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :projects
   map.resources :albums
   map.resources :city_photos
+  map.resources :project_photos
+  map.resources :album_photos
 
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"

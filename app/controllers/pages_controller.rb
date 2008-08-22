@@ -33,6 +33,9 @@ class PagesController < ApplicationController
 
   def home
     @page=Page.find_by_ident_name("home")
+    @events = Event.find(:all, :limit => 10, :order => "created_at")
+    @articles = Article.find(:all, :limit => 10, :order => "created_at")
+    @success_stories = SuccessStory.find(:all, :limit => 6, :include => [:member,])
   end
 
   def about_us

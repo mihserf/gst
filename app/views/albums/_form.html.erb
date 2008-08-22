@@ -1,0 +1,42 @@
+
+
+<%= javascript_include_tag :fckeditor %>
+
+
+
+<script type='text/javascript'>
+    function destroy(controller,id){
+        $.post("/"+controller+"/destroy/"+id, { },  function(data){
+                    
+                    } );
+    }
+</script>
+
+Язык    <%=Localedb.global.short%>
+<% form_for @album, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%=ident_choice(@album)%>
+  </p>
+  <p>
+    <%= f.label 'Название' %><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label 'Описание' %><br />
+    <%= fckeditor_textarea(:album, :description, :toolbarSet => 'Simple', :width => '100%', :height => '300px') %>
+  </p>
+
+
+
+  <div id="album_photos">
+    <%= render :partial => 'existing_album_photo', :collection => @album.album_photos  unless @album.new_record?  %>
+  </div>
+  <%= add_link 'Добавить фото', 'album_photos' %>
+
+  <p>
+    <%= f.submit "Сохранить" %>
+  </p>
+<% end %>
+

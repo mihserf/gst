@@ -1,0 +1,23 @@
+<%=tabs(:tab1=>"Проекты")%>
+
+<%@locales=Localedb.find(:all)%>
+
+<table class="admin_table">
+<%current_lang=nil%>
+<% for project in @projects %>
+    <tr>
+        <td><%= link_to(project.name, project_path(project))%></td>
+        <td>
+            <%@locales.each do |loc|%>
+                <%=loc.short%><%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_lang_project_path(loc.short,project) %>
+            <%end%>
+        </td>
+        <td><%= link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), project, :confirm => 'Подтвердите удаление', :method => :delete %></td>
+    </tr>
+  <tr></tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Добавить проект', new_project_path %>

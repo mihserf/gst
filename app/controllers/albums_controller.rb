@@ -1,2 +1,81 @@
 class AlbumsController < ApplicationController
+  def index
+    @albums = Album.find(:all)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @members }
+    end
+  end
+
+  def show
+    @album = Album.find_by_ident_name(params[:id]) || Album.find(params[:id])
+  end
+
+  def edit
+    @album = Album.find(params[:id])
+  end
+
+  def update
+    @album = Album.find(params[:id])
+    @album.attributes = params[:album]
+
+    managing_photos
+
+    respond_to do |format|
+      if @album.save!
+        flash[:notice] = 'Проект изменён.'
+        format.html { redirect_to albums_path }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @album.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def new
+    @album = Album.new
+  end
+
+  def create
+    @album = Album.new(params[:album])
+    managing_photos
+
+    respond_to do |format|
+      if @album.save
+        flash[:notice] = 'Проект добавлен.'
+        format.html { redirect_to albums_path }
+        format.xml  { render :xml => @album, :status => :created, :location => @album }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @album.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @album = Album.find(params[:id])
+    @album.destroy
+    respond_to do |format|
+      format.html { redirect_to(albums_url) }
+      format.xml  { head :ok }
+    end
+  end
+
+  def managing_photos
+    params[:photos] ||= []
+    params[:photos].each do |photo|
+      @album.album_photos.build(photo) unless photo[:uploaded_data] == ""
+    end
+
+    params[:existing_photos] ||= []
+    params[:existing_photos].each_value do |photo|
+      @photo = AlbumPhoto.find(photo[:id])
+      @photo.update_attributes(photo) unless photo[:uploaded_data] == ""
+      #OPTIMIZE: improve update_attribute
+      @photo.update_attribute(:main,photo[:main])
+      @photo.update_attribute(:description,photo[:description])
+    end unless params[:existing_photos].empty?
+  end
 end

@@ -4,10 +4,19 @@ title: Заголовок
 
 menu: ru
 
+#common
+read_more: читать далее
+hide: скрыть
+
 #home tabs
 news: Новости
 success_stories: Истории успеха
 
+#home text
+jim_articles: Статьи Джима Флетчера
+jim_articles_text: В своеобразном стиле президент рекламного агентства Global Media Джим Флетчер написал несколько статей о секретах миллионеров.
+articles_list_name: Пресса о нас
+events_list_name: Новости
 #city/show
 opinions: Отзывы
 

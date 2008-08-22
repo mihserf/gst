@@ -3,6 +3,7 @@ class CreateAlbumPhotos < ActiveRecord::Migration
     create_table :album_photos do |t|
       t.integer :album_id
       t.string :description
+      t.boolean :main
 
        t.integer  :size  # file size in bytes
       t.string :content_type    # mime type, ex: application/mp3

@@ -44,8 +44,9 @@ module ApplicationHelper
      render :partial => "shared/tabs", :locals => {:ul => ul}
   end
 
-  def lang_choice(obj)
-    langs = obj.class.find(:all, :select => :lang, :conditions =>{:ident_name => obj.ident_name}).collect(&:lang) rescue []  # if obj hasn't any of this attributes then rescue with empty array
+  def lang_choice
+    #langs = obj.class.find(:all, :select => :lang, :conditions =>{:ident_name => obj.ident_name}).collect(&:lang) rescue []  # if obj hasn't any of this attributes then rescue with empty array
+    langs = Localedb.find(:all).collect(&:short);
     render  :partial  =>  "shared/lang_choice", :locals => {:langs => langs}
   end
 

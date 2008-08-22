@@ -5,10 +5,20 @@ flag: us.png
 
 menu: en
 
+#common
+read_more: read more
+hide: hide
+
 #home tabs
 news: News
 success_stories: Success stories
 
+#home text
+jim_articles: Jim Fletcher's Articles
+jim_articles_text: Co-founder of Global Media Advertising agency, Jim Fletcher wrote several articles about the secrets of the millionaires in his individual manner.
+articles_list_name: Mass media articles
+events_list_name: News
+  
 #city/show
 opinions: Opinions
 

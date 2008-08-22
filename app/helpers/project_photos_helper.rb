@@ -1,0 +1,2 @@
+module ProjectPhotosHelper
+end

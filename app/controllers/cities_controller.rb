@@ -111,9 +111,9 @@ class CitiesController < ApplicationController
 
     params[:existing_photos] ||= []
     params[:existing_photos].each_value do |photo|
-      @city_photo = CityPhoto.find(photo[:id])
-      @city_photo.update_attributes(photo) unless photo[:uploaded_data] == ""
-      @city_photo.update_attribute(:main,photo[:main])
+      @photo = CityPhoto.find(photo[:id])
+      @photo.update_attributes(photo) unless photo[:uploaded_data] == ""
+      @photo.update_attribute(:main,photo[:main])
     end unless params[:existing_photos].empty?
   end
 
