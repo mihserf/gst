@@ -24,9 +24,10 @@ ActionController::Routing::Routes.draw do |map|
     l.resources :jim_articles
     l.resources :projects
     l.resources :albums
+    l.resources :magazines, :has_many => :articles
   end
 
- map.with_options :collection => {:list => :get} do |map|
+
   map.resources :pages
   map.resources :countries, :has_many  => :cities
   map.resources :cities, :has_many => :members
@@ -44,11 +45,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :city_photos
   map.resources :project_photos
   map.resources :album_photos
- end
+  map.resources :magazines, :has_many => :articles
+
 
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"
-    ["about_us","contacts","faq","charity","founder","team","mission","principles"].each do |action|  page.home "/#{action}", :action =>action   end
+    ["about_us","contacts","faq","founder","team","mission","principles"].each do |action|  page.home "/#{action}", :action =>action   end
     page.home ":lang/", :action =>  "home", :lang => /ru|en|ua/
     page.home ":lang/:action"
 

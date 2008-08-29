@@ -37,7 +37,7 @@
 </div>
 <div id="wrap">
 <div id="top_menu">
-<%= render :partial => 'shared/menu_'+:menu.l('ru') %>
+<%= render :partial => 'shared/menu' %>
 </div>
 
 <div id="header" style="height:225px">
@@ -91,16 +91,7 @@
         <div id="footer_cont">
         	<div id="footer_div">
         	<a href="aboutus.php">About</a> <a href="tel.php">Contacts</a>
-                <%if admin?%>
-                   | <%= link_to 'Страны', countries_path %>
-                    <%= link_to 'Страницы', pages_path %>
-                    <%= link_to 'Тренеры', members_path %>
-                    <%= link_to 'Проекты', projects_path %>
-                    <%= link_to 'Статусы', statuses_path %>
-                    <%= link_to 'Новости', events_path %>
-                    <%= link_to 'СМИ', articles_path %>
-                    <%= link_to 'Благотворительность', charities_path %>
-                    <%= link_to 'Статьи Джимма', jim_articles_path %>
+                <%if admin?%> 
                    |
                     <%= yield :admin_actions %>
                 <%end%>

@@ -4,7 +4,7 @@ class CharitiesController < ApplicationController
   # GET /charities
   # GET /charities.xml
   def index
-    @charities = Charity.find(:all, :order => :ident_name)
+    @charities = Charity.find(:all, :order => :created_at)
 
     respond_to do |format|
       format.html { render :template => "charities/list" unless admin?}

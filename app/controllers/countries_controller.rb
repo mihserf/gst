@@ -66,7 +66,6 @@ class CountriesController < ApplicationController
   def update
     @country = Country.find(params[:id])
     @country.attributes = params[:country]
-    @country.build_map(params[:map]) unless params[:map].nil?
 
     unless params[:map].nil?
       if @map=@country.map

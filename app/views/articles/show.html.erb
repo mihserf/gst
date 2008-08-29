@@ -3,8 +3,8 @@
   <%= items_list(@article, :attr_name => "title") %>
 </div>
 <div id="content_main">
-<h3><%=h @article.title%></h3>
-
+<h3 class="inline"><%=h @article.title%></h3> (<%= link_to @article.magazine.name, lang_magazine_path(lang_id(@lang),@article.magazine.ident_name) %>)
+<br>
 <%= @article.body %>
 
 </div>

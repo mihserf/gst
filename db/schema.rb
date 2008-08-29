@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080827092021) do
+ActiveRecord::Schema.define(:version => 20080829111631) do
 
   create_table "album_photo_translations", :force => true do |t|
     t.string   "description"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20080827092021) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "main"
   end
 
   create_table "article_translations", :force => true do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20080827092021) do
     t.string   "ident_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "magazine_id"
   end
 
   create_table "charities", :force => true do |t|
@@ -209,6 +211,39 @@ ActiveRecord::Schema.define(:version => 20080827092021) do
     t.datetime "updated_at"
   end
 
+  create_table "magazine_logos", :force => true do |t|
+    t.integer  "magazine_id"
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magazine_translations", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "coord"
+    t.integer  "localedb_id"
+    t.integer  "magazine_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magazines", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "url"
+    t.text     "coord"
+    t.string   "ident_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "maps", :force => true do |t|
     t.integer  "country_id"
     t.integer  "size"
@@ -300,6 +335,7 @@ ActiveRecord::Schema.define(:version => 20080827092021) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "controller_name"
   end
 
   create_table "project_photo_translations", :force => true do |t|
@@ -323,6 +359,7 @@ ActiveRecord::Schema.define(:version => 20080827092021) do
     t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "logo"
   end
 
   create_table "project_translations", :force => true do |t|
@@ -332,6 +369,7 @@ ActiveRecord::Schema.define(:version => 20080827092021) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "short_text"
   end
 
   create_table "projects", :force => true do |t|
@@ -341,6 +379,7 @@ ActiveRecord::Schema.define(:version => 20080827092021) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "short_text"
   end
 
   create_table "status_translations", :force => true do |t|

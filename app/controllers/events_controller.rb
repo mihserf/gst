@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
-  before_filter :admin_required, :except => [:list,:index,:show]
+  before_filter :admin_required, :except => [:index,:show]
 
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.find(:all, :order => :ident_name)
+    @events = Event.find(:all, :order => :created_at)
 
     respond_to do |format|
       format.html { render :template => "events/list" unless admin?}

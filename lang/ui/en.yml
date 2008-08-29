@@ -12,19 +12,37 @@ photo: Photo
 of: of
 
 
+home: Home
+corporate: Corporate
+founder: Founder
+team: Executive team
+trainers: Trainers
+mission: Mission statement
+principles: Principles of work
+success_stories: Success stories
+charity: Charity
+news: News
+mass_media: Mass Media
+gst_countries: GST Countries
+photogallery: Photo gallery
+information: Information
+faq: FAQ
+online_help: On-line help
+forum: Forum
+contacts: Contacts
+
 articles: Articles
 article: Article
 events: News
 event: News
-treners: Treners
-success_stories: Success stories
+treners: Trainers
 countries: Countries
 projects: Projects
 albums: Albums
+magazines: Magazines
 
 #home tabs
-news: News
-success_stories: Success stories
+
 
 #home text
 jim_articles: Jim Fletcher's Articles

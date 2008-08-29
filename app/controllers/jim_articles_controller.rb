@@ -4,7 +4,7 @@ class JimArticlesController < ApplicationController
   # GET /jim_articles
   # GET /jim_articles.xml
   def index
-    @jim_articles = JimArticle.find(:all, :order => :ident_name)
+    @jim_articles = JimArticle.find(:all, :order => :created_at)
 
     respond_to do |format|
       format.html { render :template => "jim_articles/list" unless admin?}

@@ -10,20 +10,37 @@ hide: скрыть
 photo: Фото
 of: из
 
+home: Главная
+corporate: О Компании
+founder: Основатель
+team: Команда
+trainers: Тренеры
+mission: Задачи
+principles: Принципы работы
+success_stories: Истории успеха
+charity: Благотворительность
+news: Новости
+mass_media: Пресса о нас
+gst_countries: Страны GST
+photogallery: Фотогалерея
+information: Информация
+faq: Частые вопросы
+online_help: Помощь on-line
+forum: Форум
+contacts: Контакты
+
 articles: Статьи
 article: Статья
 events: Новости
 event: Новость
 treners: Тренеры
-success_stories: Истории успеха
 countries: Страны
 projects: Проекты
 albums: Альбомы
+magazines: Журналы
 
 
 #home tabs
-news: Новости
-success_stories: Истории успеха
 
 #home text
 jim_articles: Статьи Джима Флетчера

@@ -17,13 +17,16 @@ $(document).ready(function(){
                     <div id="projects">
                     	<div id="projects_title">Our projects</div>
                         <div id="projects_body">
-                        <div><a href="pr2.php"><img src="images/projects/airline.jpg" /></a><div class="img_description"><a href="pr2.php">VIP-Airlines Club</a></div></div>
-                        <div><a href="pr4.php"><img src="images/projects/bestfoods.jpg" /></a><div class="img_description"><a href="pr4.php">Food factory �Best Foods�</a></div></div>
-                        <div><a href="http://premierboatandyachtclub.com.ua/"><img src="images/projects/boat.jpg" /></a><div class="img_description"><a href="http://premierboatandyachtclub.com.ua/">Premier Boat and Yacht Club</a></div></div>
-                        <div><a href="http://www.premierlimousines.com.ua/"><img src="images/projects/lim.jpg" /></a><div class="img_description"><a href="http://www.premierlimousines.com.ua/">Premier Limousine</a></div></div>
-                        </div>
-                    </div>
-                    
+                          <% for project in @projects %>
+                            <div>
+                              <%= link_to (image_tag project.project_photos.logo.first.public_filename(:view)), lang_project_path(lang_id(@lang),project.ident_name) %>
+                              <div class="img_description">
+                                <%= link_to project.name, lang_project_path(lang_id(@lang),project.ident_name) %>
+                              </div>
+                          </div>
+                          <% end %>
+                         </div>
+                       </div>
                 </div>
                 <div id="page-2">
 

@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.xml
   def index
-    @articles = Article.find(:all, :order => :ident_name)
+    @articles = Article.find(:all, :order => :created_at)
 
     respond_to do |format|
       format.html { render :template => "articles/list" unless admin?}

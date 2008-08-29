@@ -8,6 +8,12 @@
   <p>
     <%=ident_choice(@article)%>
   </p>
+
+  <p>
+    <%= f.label 'Журнал' %><br />
+    <%= f.select :magazine_id, Magazine.find(:all, :order =>"name").map {|it| [it.name,it.id]}, :include_blank => true %>
+  </p>
+
   <p>
     <%= f.label 'Название' %><br />
     <%= f.text_field :title %>
