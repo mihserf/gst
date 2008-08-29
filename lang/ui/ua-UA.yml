@@ -1,12 +1,23 @@
-locale_name: Russian
+locale_name: Ukrainian
 
 title: Заголовок
 
 menu: ru
 
+#common
+read_more: читать далее
+hide: скрыть
+
 #home tabs
 news: Новости
 success_stories: Истории успеха
+
+#home text
+jim_articles: Статьи Джима Флетчера
+jim_articles_text: В своеобразном стиле президент рекламного агентства Global Media Джим Флетчер написал несколько статей о секретах миллионеров.
+articles_list_name: Пресса о нас
+events_list_name: Новости
+read_all_stories: Читать все истории
 
 #city/show
 opinions: Отзывы
@@ -61,12 +72,12 @@ date_helper_time_formats: # DON'T  TRANSLATE, RE ORDER
 # added at the end of date if your date system doesn't use a 24 hours system
 date_helper_am: am
 date_helper_pm: pm
-    
+
 # used by ActionView::Helpers::NumberHelper.number_to_currency
 number_helper_unit: "руб."
 number_helper_separator: "." #unit separator (between integer part and fraction part)
-number_helper_delimiter: " " #delimiter between each group of thousands. Example: 1.234.567 
-number_helper_order: [ number, unit ] 
+number_helper_delimiter: " " #delimiter between each group of thousands. Example: 1.234.567
+number_helper_order: [ number, unit ]
 #to support for instance French format, the order is different: Unit comes last (ex. "1.234,00 €")
 
 # use by +Array#to_sentence()+
@@ -109,7 +120,7 @@ date_helper_abbr_month_names:
   - Нояб
   - Дек
 
-date_helper_day_names: 
+date_helper_day_names:
   - Воскресенье
   - Понедельник
   - Вторник
@@ -118,7 +129,7 @@ date_helper_day_names:
   - Пятница
   - Суббота
 
-date_helper_abbr_day_names: 
+date_helper_abbr_day_names:
   - Вс
   - Пн
   - Вт
@@ -147,7 +158,7 @@ countries_list:
   - Bahrain
   - Bangladesh
   - Barbados
-  - Belarus 
+  - Belarus
   - Belgium
   - Belize
   - Benin
@@ -158,7 +169,7 @@ countries_list:
   - Botswana
   - Bouvet Island
   - Brazil
-  - British Indian Ocean Territory 
+  - British Indian Ocean Territory
   - Brunei Darussalam
   - Bulgaria
   - Burkina Faso
@@ -209,7 +220,7 @@ countries_list:
   - French Polynesia
   - French Southern Territories
   - Gabon
-  - Gambia 
+  - Gambia
   - Georgia
   - Germany
   - Ghana
@@ -229,7 +240,7 @@ countries_list:
   - Honduras
   - Hong Kong
   - Hungary
-  - Iceland 
+  - Iceland
   - India
   - Indonesia
   - Ireland

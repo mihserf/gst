@@ -1,0 +1,27 @@
+
+<%=tabs(:tab1=>:projects.l("Проекты"))%>
+
+
+
+  <%for item in @projects%>
+    <div class="project">
+      <div class="project_img">
+        <%= link_to  (image_tag item.project_photos.logo.first.public_filename(:view)), lang_project_path(lang_id(@lang),item.ident_name) unless item.project_photos.logo.empty?%>
+      </div>
+      <div class="project_text">
+        <%= link_to  item.name, lang_project_path(lang_id(@lang),item.ident_name) %><br>
+        <%= item.short_text %>
+      </div>
+      <br>
+        
+    </div>
+  <%end%>
+
+
+
+
+
+
+  <%content_for(:admin_actions) do%>
+     <%= link_to 'Редактировать', lang_statuses_path(lang_id(@lang)) %>
+  <%end%>

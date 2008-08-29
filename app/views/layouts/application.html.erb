@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<title><%= :page_title.l %></title>
+	<title><%= :page_title.l("GST") %></title>
 
 	<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
 	<meta name="author" content="Michail Gaganov" />
@@ -44,7 +44,7 @@
 	<div id="header_cont">
     	<div id="header_cont_div">
             <div id="header1">
-            <div id="flags"><%=lang_choice%></div>
+            <div id="flags"><%=link_to 'выход', admin_logout_url, :class => "admin_link"  if admin?%><%=lang_choice%></div>
             </div>
             <div id="header2">
 
@@ -95,6 +95,7 @@
                    | <%= link_to 'Страны', countries_path %>
                     <%= link_to 'Страницы', pages_path %>
                     <%= link_to 'Тренеры', members_path %>
+                    <%= link_to 'Проекты', projects_path %>
                     <%= link_to 'Статусы', statuses_path %>
                     <%= link_to 'Новости', events_path %>
                     <%= link_to 'СМИ', articles_path %>

@@ -1,15 +1,18 @@
 class StatusesController < ApplicationController
+  before_filter :admin_required, :except => [:index,:show]
+
   def index
-      @statuses = Status.find(:all, :order => "number")
+      @statuses =  Status.find(:all, :order => "number")
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :template => "statuses/list" unless admin?}
       format.xml  { render :xml => @statuses }
       format.js  { render :json => @statuses.to_json }
     end
   end
 
   def show
+    @status = Status.find_by_ident_name(params[:id]) || Status.find(params[:id])
   end
 
   def edit

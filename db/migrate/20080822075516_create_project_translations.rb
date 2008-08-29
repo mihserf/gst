@@ -2,6 +2,7 @@ class CreateProjectTranslations < ActiveRecord::Migration
   def self.up
     create_table :project_translations do |t|
       t.string :name
+      t.text  :short_text
       t.text :description
 
       t.integer :localedb_id

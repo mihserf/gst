@@ -3,8 +3,8 @@ class ProjectsController < ApplicationController
     @projects = Project.find(:all)
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @members }
+      format.html { render :template => "projects/list" unless admin?}
+      format.xml  { render :xml => @projects }
     end
   end
 
@@ -72,10 +72,10 @@ class ProjectsController < ApplicationController
     params[:existing_photos] ||= []
     params[:existing_photos].each_value do |photo|
       @photo = ProjectPhoto.find(photo[:id])
-      @photo.update_attributes(photo) unless photo[:uploaded_data] == ""
-      #OPTIMIZE: improve update_attribute
-      @photo.update_attribute(:main,photo[:main])
-      @photo.update_attribute(:description,photo[:description])
+      #photo.delete("uploaded_data") if photo[:uploaded_data] == ""
+      #photo[:main]=nil unless photo[:main]
+      #photo[:logo]=nil unless photo[:logo]
+      @photo.update_attributes(photo)
     end unless params[:existing_photos].empty?
   end
 

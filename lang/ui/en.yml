@@ -8,6 +8,19 @@ menu: en
 #common
 read_more: read more
 hide: hide
+photo: Photo
+of: of
+
+
+articles: Articles
+article: Article
+events: News
+event: News
+treners: Treners
+success_stories: Success stories
+countries: Countries
+projects: Projects
+albums: Albums
 
 #home tabs
 news: News
@@ -18,7 +31,8 @@ jim_articles: Jim Fletcher's Articles
 jim_articles_text: Co-founder of Global Media Advertising agency, Jim Fletcher wrote several articles about the secrets of the millionaires in his individual manner.
 articles_list_name: Mass media articles
 events_list_name: News
-  
+read_all_stories: Read all stories
+
 #city/show
 opinions: Opinions
 

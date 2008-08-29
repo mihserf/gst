@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080822075556) do
+ActiveRecord::Schema.define(:version => 20080827092021) do
 
   create_table "album_photo_translations", :force => true do |t|
     t.string   "description"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(:version => 20080822075556) do
     t.integer  "num_order"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "country_translations", :force => true do |t|
@@ -157,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20080822075556) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "event_translations", :force => true do |t|
@@ -246,7 +248,7 @@ ActiveRecord::Schema.define(:version => 20080822075556) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_name"
-    t.string   "status"
+    t.string   "status_additional"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -255,7 +257,7 @@ ActiveRecord::Schema.define(:version => 20080822075556) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_name"
-    t.string   "status"
+    t.string   "status_additional"
     t.integer  "city_id"
     t.string   "ident_name"
     t.integer  "number"

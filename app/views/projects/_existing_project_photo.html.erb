@@ -7,7 +7,11 @@
 
     <%= link_to_function  image_tag("/images/delete_ico.gif",:alt=>"Удалить"), "destroy('project_photos',"+existing_project_photo.id.to_s+"); $(this).parent().fadeOut('slow', function(){$(this).remove()});" %>
 
-    основная? <%= check_box_tag 'existing_photos['+existing_project_photo.id.to_s+'][main]', 1, existing_project_photo.main? %>
+    <p>основная? <%= check_box_tag 'existing_photos['+existing_project_photo.id.to_s+'][main]', 1, existing_project_photo.main? %>
+                                <%= hidden_field_tag 'existing_photos['+existing_project_photo.id.to_s+'][main]', 0 %></p>
+    <p>лого? <%= check_box_tag 'existing_photos['+existing_project_photo.id.to_s+'][logo]', 1, existing_project_photo.logo? %>
+                                <%= hidden_field_tag 'existing_photos['+existing_project_photo.id.to_s+'][logo]', 0 %></p>
+
     <p>
         Описание<br>
         <%=  text_field_tag  'existing_photos['+existing_project_photo.id.to_s+'][description]', existing_project_photo.description%>

@@ -1,8 +1,9 @@
 class SuccessStoriesController < ApplicationController
   before_filter :get_member, :except => [:index, :destroy]
+  before_filter :admin_required, :except => [:index,:show]
 
   def index
-    @success_stories = SuccessStory.find(:all, :order => "lang")
+    @success_stories = SuccessStory.find(:all, :include => :member)
 
     respond_to do |format|
       format.html # index.html.erb

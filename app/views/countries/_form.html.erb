@@ -8,8 +8,12 @@
     <%=ident_choice(@country)%>
   </p>
   <p>
-    <%= f.label 'Название' %><br />
+    <%= f.label 'Название страны' %><br />
     <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label 'Заголовок' %><br />
+    <%= f.text_field :title %>
   </p>
   <p>
     <%= f.label 'Текст' %><br />

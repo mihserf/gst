@@ -1,12 +1,12 @@
 class CountriesController < ApplicationController
-  before_filter :admin_required, :except => [:show]
+  before_filter :admin_required, :except => [:show, :index]
   # GET /countries
   # GET /countries.xml
   def index
     @countries = Country.find(:all, :order => :ident_name)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :template => "countries/list" unless admin?}
       format.xml  { render :xml => @countries }
     end
   end
@@ -15,6 +15,7 @@ class CountriesController < ApplicationController
   # GET /countries/1.xml
   def show
     @country = Country.find_by_ident_name(params[:id]) || Country.find(params[:id])
+    @cities = @country.cities.find(:all, :include => :city_coord)
     #@countries = Country.find_all_by_lang(@country.lang)
     respond_to do |format|
       format.html # show.html.erb

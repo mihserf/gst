@@ -3,7 +3,7 @@ class AlbumsController < ApplicationController
     @albums = Album.find(:all)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :template => "albums/list" unless admin?}
       format.xml  { render :xml => @members }
     end
   end
@@ -17,6 +17,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
+    Album.update_all( :main => false)
     @album = Album.find(params[:id])
     @album.attributes = params[:album]
 
@@ -72,10 +73,7 @@ class AlbumsController < ApplicationController
     params[:existing_photos] ||= []
     params[:existing_photos].each_value do |photo|
       @photo = AlbumPhoto.find(photo[:id])
-      @photo.update_attributes(photo) unless photo[:uploaded_data] == ""
-      #OPTIMIZE: improve update_attribute
-      @photo.update_attribute(:main,photo[:main])
-      @photo.update_attribute(:description,photo[:description])
+      @photo.update_attributes(photo)
     end unless params[:existing_photos].empty?
   end
 end

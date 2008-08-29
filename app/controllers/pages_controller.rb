@@ -14,6 +14,9 @@ class PagesController < ApplicationController
     @page=Page.new(params[:page])
     if  @page.save!
       flash[:notice]="Страница создана. Добавте изменения в файл /config/routes.rb"
+      redirect_to pages_path
+    else
+      render :action => "new"
     end
   end
 
@@ -31,10 +34,19 @@ class PagesController < ApplicationController
     end
   end
 
+  def destroy
+    @page = Page.find(params[:id])
+    @page.destroy
+    respond_to do |format|
+      format.html { redirect_to(pages_url) }
+      format.xml  { head :ok }
+    end
+  end
+
   def home
     @page=Page.find_by_ident_name("home")
-    @events = Event.find(:all, :limit => 10, :order => "created_at")
-    @articles = Article.find(:all, :limit => 10, :order => "created_at")
+    @events = Event.find(:all, :limit => 7, :order => "created_at")
+    @articles = Article.find(:all, :limit => 7, :order => "created_at")
     @success_stories = SuccessStory.find(:all, :limit => 6, :include => [:member,])
   end
 

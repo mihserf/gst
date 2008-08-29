@@ -22,6 +22,8 @@ module ApplicationHelper
         return "en"
       when 'ru-RU'
         return "ru"
+      when 'ua-UA'
+        return "ua"
       else return ""
      end
   end
@@ -31,12 +33,26 @@ module ApplicationHelper
     render :partial => "shared/countries_list", :locals => {:countries => countries, :current_country => country}
   end
 
+  def items_list(obj, attr_name)
+    attr_name = (attr_name.nil?)?   "name" : attr_name[:attr_name]
+    if obj.class==Array
+      items = obj
+      item = nil
+    else
+      items = obj.class.find(:all)
+      item = obj
+    end
+    render :partial => "shared/items_list", :locals => {:items => items, :current_item => item, :attr_name => attr_name}
+  end
+
   def tabs(*args)
     options=args.extract_options!
     i=0
     ul=""
     li=""
-    options.each_value do |val|
+    
+    options = options.to_a.sort_by{|k| k.to_s}
+    options.each do |key,val|
       i+=1
       li<<"<li id='but#{i}' class='but but#{i}'><a href='#page-#{i}' id='link_to_page_#{i}'><span>#{val}</span></a></li>"
     end

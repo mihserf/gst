@@ -7,6 +7,19 @@ menu: ru
 #common
 read_more: читать далее
 hide: скрыть
+photo: Фото
+of: из
+
+articles: Статьи
+article: Статья
+events: Новости
+event: Новость
+treners: Тренеры
+success_stories: Истории успеха
+countries: Страны
+projects: Проекты
+albums: Альбомы
+
 
 #home tabs
 news: Новости
@@ -17,6 +30,8 @@ jim_articles: Статьи Джима Флетчера
 jim_articles_text: В своеобразном стиле президент рекламного агентства Global Media Джим Флетчер написал несколько статей о секретах миллионеров.
 articles_list_name: Пресса о нас
 events_list_name: Новости
+read_all_stories: Читать все истории
+
 #city/show
 opinions: Отзывы
 

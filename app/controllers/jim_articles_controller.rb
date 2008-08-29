@@ -1,12 +1,13 @@
 class JimArticlesController < ApplicationController
-  before_filter :admin_required, :except => [:show]
+  before_filter :admin_required, :except => [:index,:show]
+
   # GET /jim_articles
   # GET /jim_articles.xml
   def index
     @jim_articles = JimArticle.find(:all, :order => :ident_name)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :template => "jim_articles/list" unless admin?}
       format.xml  { render :xml => @jim_articles }
     end
   end

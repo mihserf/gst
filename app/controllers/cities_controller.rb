@@ -112,13 +112,12 @@ class CitiesController < ApplicationController
     params[:existing_photos] ||= []
     params[:existing_photos].each_value do |photo|
       @photo = CityPhoto.find(photo[:id])
-      @photo.update_attributes(photo) unless photo[:uploaded_data] == ""
-      @photo.update_attribute(:main,photo[:main])
+      @photo.update_attributes(photo)      
     end unless params[:existing_photos].empty?
   end
 
   def get_country
-    @country = Country.find(params[:country_id])
+    @country = Country.find_by_ident_name(params[:country_id]) || Country.find(params[:country_id])
   end
 
 

@@ -1,12 +1,14 @@
+<%=tabs(:tab1=>:article.l("Статья"))%>
+<div id="content_right">
+  <%= items_list(@article, :attr_name => "title") %>
+</div>
 <div id="content_main">
-<h3 class="inline"><%=h @article.title%></h3> <%= lang_choice(@article) %><br>
+<h3><%=h @article.title%></h3>
 
 <%= @article.body %>
 
 </div>
-<div id="content_right">
-  <%= countries_list(@article) %>
-</div>
+
 
 
   <%content_for(:admin_actions) do%>

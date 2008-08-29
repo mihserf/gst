@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def admin?
+    session[:admin]
+  end
+
   def admin_login
     redirect_to admin_login_path
   end
@@ -58,7 +62,10 @@ class ApplicationController < ActionController::Base
       when 'ua'
         params_locale_code = 'ua-UA'
       end
+    else
+      params_locale_code = 'ru-RU' unless (request.method == :post) || (request.method == :put) || (request.method == :delete)
     end
+
 
     if params_locale_code
         logger.debug "[globalite] #{params_locale_code} locale passed"
@@ -88,7 +95,8 @@ class ApplicationController < ActionController::Base
   # Get a sorted array of the navigator languages
   def get_sorted_langs_from_accept_header
     accept_langs = (request.env['HTTP_ACCEPT_LANGUAGE'] || "en-us,en;q=0.5").split(/,/) rescue nil
-    return nil unless accept_langs
+    #return nil unless accept_langs
+    return "ru-RU" unless accept_langs
 
     # Extract langs and sort by weight
     # Example HTTP_ACCEPT_LANGUAGE: "en-au,en-gb;q=0.8,en;q=0.5,ja;q=0.3"

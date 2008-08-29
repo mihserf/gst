@@ -3,4 +3,6 @@ class Charity < ActiveRecord::Base
 
    translate_columns  :title, :short_text, :body
 
+  include SetIdentName
+  
 end

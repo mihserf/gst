@@ -1,12 +1,13 @@
 class CharitiesController < ApplicationController
-  before_filter :admin_required, :except => [:show]
+  before_filter :admin_required, :except => [:index,:show]
+
   # GET /charities
   # GET /charities.xml
   def index
     @charities = Charity.find(:all, :order => :ident_name)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :template => "charities/list" unless admin?}
       format.xml  { render :xml => @charities }
     end
   end

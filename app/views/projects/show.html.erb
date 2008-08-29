@@ -1,2 +1,27 @@
-<h1>Members#show</h1>
-<p>Find me in app/views/members/show.html.erb</p>
+<%=tabs(:tab1=>:projects.l("Проекты"))%>
+
+<div id="content_right">
+    <%=items_list(@project, :attr_name =>"name")%>
+</div>
+
+<div id="content_main">
+  <h3><%= @project.name %></h3>
+
+    <div class="project">
+      <div class="project_img">
+        <%=  image_tag @project.project_photos.logo.first.public_filename(:view) unless @project.project_photos.logo.empty?%>
+      </div>
+      <div class="project_text">
+        <%= @project.description %>
+        <p>
+          <% if @project.url %>
+          <%= :project_url.l("сайт проекта") %>: <%= link_to @project.url, @project.url %>
+          <%  end %>
+        </p>
+      </div>
+      <br>
+
+    </div>
+
+
+</div>

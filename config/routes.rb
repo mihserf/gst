@@ -8,7 +8,8 @@ ActionController::Routing::Routes.draw do |map|
  map.resources :countries, :has_many  => :cities
  # map.resources :cities
 
-  map.with_options :path_prefix => ':lang', :lang => /ru|en|ua/, :name_prefix => 'lang_' do |l|
+  
+  map.with_options :path_prefix => ':lang', :lang => /ru|en|ua/, :name_prefix => 'lang_', :collection => {:list => :get} do |l|
     l.resources :pages
     l.resources :countries, :has_many  => :cities
     l.resources :cities, :has_many => :members
@@ -25,6 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     l.resources :albums
   end
 
+ map.with_options :collection => {:list => :get} do |map|
   map.resources :pages
   map.resources :countries, :has_many  => :cities
   map.resources :cities, :has_many => :members
@@ -42,6 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :city_photos
   map.resources :project_photos
   map.resources :album_photos
+ end
 
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"

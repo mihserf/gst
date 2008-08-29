@@ -8,7 +8,10 @@ class Member < ActiveRecord::Base
   has_one :opinion, :dependent => :destroy
   belongs_to :city
   translate_columns  :first_name, :last_name, :middle_name, :status
-  
+
+  named_scope :with_opinion, :joins =>:opinion
+
+  include SetIdentName
 
   def name
     last_name+" "+first_name.first

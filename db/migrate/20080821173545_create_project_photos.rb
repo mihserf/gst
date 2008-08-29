@@ -4,6 +4,7 @@ class CreateProjectPhotos < ActiveRecord::Migration
       t.integer :project_id
       t.string :description
       t.boolean :main
+      t.boolean :logo
 
       t.integer  :size  # file size in bytes
       t.string :content_type    # mime type, ex: application/mp3

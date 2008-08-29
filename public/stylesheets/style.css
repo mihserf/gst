@@ -6,6 +6,12 @@ padding:0px;
 margin:10px;
 overflow-x:hidden;
 }
+h2 a{
+  text-decoration:none;
+}
+.strong{
+  font-weight:bold;
+}
 #wrap{
 width:expression(((document.documentElement.clientWidth || document.body.clientWidth) < 770)? "770px" : "100%");
 }
@@ -211,6 +217,7 @@ float:left;
 #flags{
 padding-right:5px;
 float:right;
+height: 17px;
 }
 #flags img{
 padding:3px 3px;
@@ -596,7 +603,7 @@ color:#2e3244;
 text-align:justify;
 padding:5px;
 float:left;
-width:50%;
+width:48%;
 }
 #top_news .link_title{
 font-weight:600;
@@ -680,19 +687,19 @@ padding-right:10px;
 }
 
 #content_main{
-float:left;
-margin-right:200px;
+/*float:left;*/
+margin-right:260px;
 }
 #content_right{
 width:220px;
 float:right;
-margin-left:-262px;
+argin-left:-262px;
 border-left:#999999 1px solid;
 }
 #content_right ul{
 	padding-left:10px;
 	margin-left:0px;
-        list-style:none;
+        //list-style:none;
 }
 #content_right li{
 padding-bottom:5px;
@@ -738,3 +745,34 @@ margin-right:5px;
 .inline{
   display: inline;
 }
+
+.admin_link{
+  color: #ccc;
+  padding-bottom:5px;
+  padding-right:5px;
+  display:block;
+  float:left;
+}
+
+#map{
+  width:100%;
+}
+
+.project{
+}
+
+.project .project_img{
+  float:left;
+  width: 150px;
+}
+
+.project .project_text{
+  margin-left: 155px;
+}
+
+.read_more_link{
+    display:block;
+    width:100px;
+    float:right;
+}
+

@@ -1,12 +1,16 @@
+<%=tabs(:tab1=>:event.l("Новость"))%>
+
+<div id="content_right">
+  <%= items_list(@event, :attr_name => "title") %>
+</div>
+
 <div id="content_main">
-<h3 class="inline"><%=h @event.title%></h3> <%= lang_choice(@event) %><br>
+<h3><%=h @event.title%></h3>
 
 <%= @event.body %>
 
 </div>
-<div id="content_right">
-  <%= countries_list(@event) %>
-</div>
+
 
 
   <%content_for(:admin_actions) do%>

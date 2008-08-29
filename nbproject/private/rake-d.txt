@@ -43,6 +43,7 @@ doc\:plugins\:fckeditor=
 doc\:plugins\:globalite=
 doc\:plugins\:jrails=
 doc\:plugins\:rspec=
+doc\:plugins\:translate_columns=
 doc\:plugins\:will_paginate=
 doc\:rails=Build the rails HTML Files
 doc\:reapp=Force a rebuild of the RDOC files

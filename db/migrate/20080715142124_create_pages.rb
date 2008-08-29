@@ -4,6 +4,7 @@ class CreatePages < ActiveRecord::Migration
       t.string :ident_name
       t.string  :name
       t.text  :content
+      t.string :controller_name
 
       t.timestamps
     end
@@ -16,7 +17,7 @@ class CreatePages < ActiveRecord::Migration
 
     Page.create!( :ident_name  => "faq", :name =>"FAQ")
 
-    Page.create!( :ident_name  => "charity", :name =>"Благотворительность")
+    Page.create!( :ident_name  => "charity", :controller_name =>"charities", :name =>"Благотворительность")
 
     Page.create!( :ident_name  => "founder", :name =>"Основатель")
 

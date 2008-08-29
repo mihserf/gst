@@ -1,4 +1,6 @@
 class MembersController < ApplicationController
+  before_filter :admin_required, :except => [:show]
+
   def index
     @members = Member.find(:all, :order => "last_name")
     
