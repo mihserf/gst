@@ -17,7 +17,6 @@
 	<%= javascript_include_tag  :defaults %>
         <%= javascript_include_tag  "ui.core.js" %>
         <%= javascript_include_tag  "ui.tabs.js" %>
-        <%= javascript_include_tag  "ui.tabs.js" %>
         <%= javascript_include_tag  "jquery.cycle.all.pack.js" %>
         <%= javascript_include_tag  "menu.js" %>
         <%= javascript_include_tag  "own.js" %>
@@ -29,11 +28,18 @@
 
 <body style="position:relative">
 <div id="top_imgs">
-	<img src="images/top_img1.jpg" id="top_img2" align="right"/>
-    <img src="images/top_img2.jpg" id="top_img2" align="right"/>
-    <img src="images/top_img3.jpg" id="top_img2" align="right"/>
-    <img src="images/top_img4.jpg" id="top_img2" align="right"/>
-    <img src="images/top_img5.jpg" id="top_img2" align="right"/>
+	<img src="/images/top_img1.jpg" id="top_img2" align="right"/>
+    <img src="/images/top_img2.jpg" id="top_img2" align="right"/>
+    <img src="/images/top_img3.jpg" id="top_img2" align="right"/>
+    <img src="/images/top_img4.jpg" id="top_img2" align="right"/>
+    <img src="/images/top_img5.jpg" id="top_img2" align="right"/>
+</div>
+<div id="top_texts_ie" style="z-index:200">
+    <img src="/images/top_text1<%=:lang.l("")%>.jpg" id="top_text2" align="left"/>
+    <img src="/images/top_text2<%=:lang.l("")%>.jpg" id="top_text2" align="right"/>
+    <img src="/images/top_text3<%=:lang.l("")%>.jpg" id="top_text2" align="right"/>
+    <img src="/images/top_text4<%=:lang.l("")%>.jpg" id="top_text2" align="right"/>
+    <img src="/images/top_text5<%=:lang.l("")%>.jpg" id="top_text2" align="right"/>
 </div>
 <div id="wrap">
 <div id="top_menu">
@@ -51,7 +57,15 @@
             </div>
             <div id="header3">
                 <div id="logo"></div>
-                <div id="slogans" style="color:#FFFFFF;"></div>
+                <div id="slogans" style="color:#FFFFFF;">
+                  <div id="top_texts">
+                          <img src="/images/top_text1<%=:lang.l("")%>.jpg" id="top_text2" align="left"/>
+                          <img src="/images/top_text2<%=:lang.l("")%>.jpg" id="top_text2" align="right"/>
+                          <img src="/images/top_text3<%=:lang.l("")%>.jpg" id="top_text2" align="right"/>
+                          <img src="/images/top_text4<%=:lang.l("")%>.jpg" id="top_text2" align="right"/>
+                          <img src="/images/top_text5<%=:lang.l("")%>.jpg" id="top_text2" align="right"/>
+                  </div>
+		</div>
             </div>
             <div id="header_shadow">
             </div>
@@ -90,7 +104,7 @@
 
         <div id="footer_cont">
         	<div id="footer_div">
-        	<a href="aboutus.php">About</a> <a href="tel.php">Contacts</a>
+        	<%= link_to :about_us.l("О компании"), "/#{lang_id(@lang)}/about_us" %> <%= link_to :contacts.l("Контакты"), "/#{lang_id(@lang)}/contacts" %>
                 <%if admin?%> 
                    |
                     <%= yield :admin_actions %>

@@ -17,7 +17,7 @@
 
   <li><%= link_to :news.l("Новости"), lang_events_path(lang_id(@lang)) %></li>
 
-  <li><%= link_to :mass_media.l("Пресса о нас"), lang_articles_path(lang_id(@lang)) %></li>
+  <li><%= link_to :mass_media.l("Пресса о нас"), lang_magazines_path(lang_id(@lang)) %></li>
 
   <li><%= link_to :gst_countries.l("Страны GST"), lang_countries_path(lang_id(@lang)) %>
           <%=menu_countries%> <!-- menu_countries placed in the application_helper -->
@@ -44,7 +44,7 @@
         <li><%= link_to 'Тренеры', members_path %></li>
         <li>&nbsp;</li>
         <li><%= link_to 'Новости', events_path %></li>
-        <li><%= link_to 'СМИ', articles_path %></li>
+        <li><%= link_to 'СМИ', magazines_path %></li>
         <li><%= link_to 'Благотворительность', charities_path %></li>
         <li><%= link_to 'Статьи Джимма', jim_articles_path %></li>
         <li>&nbsp;</li>

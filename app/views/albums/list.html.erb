@@ -20,11 +20,11 @@ $(function() {
 <%=tabs(:tab1=>:albums.l("Альбомы"))%>
 
   <div id="content_right">
-    <%=items_list(@albums, :attr_name =>"title")%>
+    <%=items_list(@albums, :attr_name =>"title", :order =>"number DESC")%>
    </div>
 
 <div id="content_main">
-  <% main_album = Album.main_album.first%>
+  <% main_album = Album.main_album.first || Album.first%>
   <h3><%= main_album.title %></h3>
   <%for item in main_album.album_photos%>
   <div class="photo" style="float:left; width:90px; height:80px; background:#ebebeb; padding: 20px 15px; margin:5px 1px;">

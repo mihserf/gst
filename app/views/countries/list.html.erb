@@ -6,13 +6,7 @@
 </div>
 
 <div id="content_main">
-  <%page=Page.find(:first, :conditions => {:controller_name => @countries.first.class.to_s.tableize})%>
-<% unless page.nil? %>
-<h3><%=h page.name%></h3>
-
-<%= page.content %>
-
-<%end%>
+<%=static_page(@countries)%>
 </div>
 
 

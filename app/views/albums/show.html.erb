@@ -20,7 +20,7 @@ $(function() {
 <%=tabs(:tab1=>:albums.l("Альбомы"))%>
 
   <div id="content_right">
-    <%=items_list(@album, :attr_name =>"title")%>
+    <%=items_list(@album, :attr_name =>"title", :order => "number DESC")%>
    </div>
 
 <div id="content_main">

@@ -1,7 +1,9 @@
 
-
 <%= javascript_include_tag :fckeditor %>
 
+<%= javascript_include_tag 'jquery.validate.min.js' %>
+<%= javascript_include_tag 'validate_localization/messages_ru.js' %>
+<%= javascript_include_tag 'own.validate.js' %>
 
 
 <script type='text/javascript'>
@@ -20,7 +22,7 @@
   </p>
   <p>
     <%= f.label 'Название' %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => "required" %>
   </p>
 
    <p>
@@ -35,10 +37,10 @@
 
   <p>
     <%= f.label 'Ссылка на сайт проекта' %><br />
-    <%= f.text_field :url %>
+    <%= f.text_field :url, :class => "url" %>
   </p>
 
-
+ <%= set_order(@project) %>
 
   <div id="project_photos">
     <%= render :partial => 'existing_project_photo', :collection => @project.project_photos  unless @project.new_record?  %>

@@ -14,7 +14,8 @@ ActionController::Routing::Routes.draw do |map|
     l.resources :countries, :has_many  => :cities
     l.resources :cities, :has_many => :members
     l.resources :opinions
-    l.resources :members, :has_many => :statuses, :has_one => [:story, :success_story, :opinion]
+    l.resources :members, :has_many => [:statuses,:member_events], :has_one => [:story, :success_story, :opinion]
+    l.resources :member_events
     l.resources :stories
     l.resources :success_stories
     l.resources :statuses, :has_many => :members
@@ -32,7 +33,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :countries, :has_many  => :cities
   map.resources :cities, :has_many => :members
   map.resources :opinions
-  map.resources :members, :has_many => :statuses, :has_one => [:story, :success_story, :opinion]
+  map.resources :members, :has_many => [:statuses,:member_events], :has_one => [:story, :success_story, :opinion]
+  map.resources :member_events
   map.resources :stories
   map.resources :success_stories
   map.resources :statuses, :has_many => :members

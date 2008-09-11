@@ -1,8 +1,10 @@
 
-<script src="http://dev.jquery.com/view/tags/ui/latest/ui/ui.draggable.js"></script>
+<%= javascript_include_tag 'jquery.draggable.min.js' %>
 <%= javascript_include_tag :fckeditor %>
 
-
+<%= javascript_include_tag 'jquery.validate.min.js' %>
+<%= javascript_include_tag 'validate_localization/messages_ru.js' %>
+<%= javascript_include_tag 'own.validate.js' %>
 
 <script type='text/javascript'>
     function destroy(controller,id){
@@ -40,8 +42,9 @@
   </p>
   <p>
     <%= f.label 'Название' %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => "required" %>
   </p>
+
 
   <p>
     <%= f.label 'Текст' %><br />

@@ -33,16 +33,26 @@ module ApplicationHelper
     render :partial => "shared/countries_list", :locals => {:countries => countries, :current_country => country}
   end
 
-  def items_list(obj, attr_name)
-    attr_name = (attr_name.nil?)?   "name" : attr_name[:attr_name]
+  #def items_list(obj, attr_name, order)
+  def items_list(obj, *options)
+    options =options.extract_options!
+
+
+    attr_name = (options[:attr_name])?   options[:attr_name] : "name"
+    order = (options[:order])?  options[:order] : nil
+    parent_obj = (options[:belongs_to])?  options[:belongs_to] : nil
     if obj.class==Array
       items = obj
       item = nil
     else
-      items = obj.class.find(:all)
+      if parent_obj
+        items = parent_obj.send("#{obj.class.to_s.tableize}").find(:all, :order =>order)
+      else
+        items = obj.class.find(:all, :order =>order)
+      end
       item = obj
     end
-    render :partial => "shared/items_list", :locals => {:items => items, :current_item => item, :attr_name => attr_name}
+    render :partial => "shared/items_list", :locals => {:items => items, :current_item => item, :attr_name => attr_name, :parent_obj => parent_obj}
   end
 
   def tabs(*args)
@@ -54,7 +64,8 @@ module ApplicationHelper
     options = options.to_a.sort_by{|k| k.to_s}
     options.each do |key,val|
       i+=1
-      li<<"<li id='but#{i}' class='but but#{i}'><a href='#page-#{i}' id='link_to_page_#{i}'><span>#{val}</span></a></li>"
+      li_val=options.size==1? "<li id='but#{i}' class='but but#{i}'><a href='#' id='link_to_page_#{i}'><span>GST</span></a></li>" : "<li id='but#{i}' class='but but#{i}'><a href='#page-#{i}' id='link_to_page_#{i}'><span>#{val}</span></a></li>"
+      li<<li_val
     end
      ul="<ul>"+li+"</ul>"
      render :partial => "shared/tabs", :locals => {:ul => ul}
@@ -72,8 +83,39 @@ module ApplicationHelper
 
   def add_link(name, container)
   link_to_function name do |page|
-    page.insert_html :bottom, container.to_sym, :partial => container.singularize, :object => container.classify.constantize.new 
+    page.insert_html :bottom, container.to_sym, :partial => container.singularize, :object => container.classify.constantize.new
+    page << 'initiateDatepicker();' if name=='Добавить дату'
   end
-end
+  end
+
+  def static_page(objs)
+    page=Page.find(:first, :conditions => {:controller_name => objs.first.class.to_s.tableize})
+    unless page.nil?
+      render  :partial => "shared/static_page", :locals => {:page => page}
+    end
+  end
+
+  def set_order(obj, *options)
+    options =options.extract_options!.reverse_merge!(:attr_name => "name")
+
+    render :partial => "shared/set_order", :locals => {:obj => obj, :attr_name => options[:attr_name]}
+  end
+  
+  
+  #CONTROLLER HELPERS
+
+  def update_numbers(model, params, new_obj_id=nil)
+    #depends on helper set_order
+    if params[:sortable_ids]
+      albums = model.find(:all, :order => 'number DESC', :limit => 20)
+      if new_obj_id
+        params[:sortable_ids] = params[:sortable_ids].gsub(/new/,new_obj_id.to_s)
+      end
+      sortable_ids = params[:sortable_ids].split(',')
+      i=albums.size+1
+      sortable_ids =Hash[*sortable_ids.collect {|v| i-=1; [v,{'number'=>i}]}.flatten]
+        model.update(sortable_ids.keys, sortable_ids.values)
+    end
+  end
 
 end

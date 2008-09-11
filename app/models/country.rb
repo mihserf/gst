@@ -4,6 +4,7 @@ class Country < ActiveRecord::Base
   has_many :translations, :class_name => 'CountryTranslation', :dependent => :destroy
   translate_columns :body,:name,:title
 
+  validates_presence_of :name
   
   include SetIdentName
 

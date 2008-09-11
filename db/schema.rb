@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080829111631) do
+ActiveRecord::Schema.define(:version => 20080903134737) do
 
   create_table "album_photo_translations", :force => true do |t|
     t.string   "description"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20080829111631) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "main"
+    t.integer  "number"
   end
 
   create_table "article_translations", :force => true do |t|
@@ -257,6 +258,32 @@ ActiveRecord::Schema.define(:version => 20080829111631) do
     t.datetime "updated_at"
   end
 
+  create_table "member_event_dates", :force => true do |t|
+    t.integer  "member_event_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "member_event_translations", :force => true do |t|
+    t.integer  "localedb_id"
+    t.integer  "member_event_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "member_events", :force => true do |t|
+    t.integer  "member_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "ident_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "member_photos", :force => true do |t|
     t.integer  "member_id"
     t.integer  "size"
@@ -380,6 +407,7 @@ ActiveRecord::Schema.define(:version => 20080829111631) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "short_text"
+    t.integer  "number"
   end
 
   create_table "status_translations", :force => true do |t|

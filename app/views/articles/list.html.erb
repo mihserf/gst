@@ -2,14 +2,15 @@
 <%=tabs(:tab1=>:articles.l("Статьи"))%>
 
 <div id="content_right">
-    <%=items_list(@articles, :attr_name =>"title")%>
+    <%=items_list(@articles, :attr_name =>"title", :belongs_to => @magazine)%>
 </div>
 
 
 <div id="content_main">
-
+<%=static_page(@articles)%>
+<h4><%=:source.l("Источник")+" : "+link_to (@magazine.name, lang_magazine_path(lang_id(@lang),@magazine.ident_name))   %></h4>
   <%for item in @articles%>
-   <%=link_to item.title, lang_article_path(lang_id(@lang),item), :class => "link_title"%> (<%= link_to item.magazine.name, lang_magazine_path(lang_id(@lang),item.magazine.ident_name) %>)
+   <%=link_to item.title, lang_magazine_article_path(lang_id(@lang),@magazine.ident_name,item.ident_name), :class => "link_title"%>
   <%=item.short_text%>
   <br>
   <%end%>

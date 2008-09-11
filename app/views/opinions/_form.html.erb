@@ -1,5 +1,6 @@
 <%= javascript_include_tag :fckeditor %>
 
+
 <% form_for @opinion, :url => member_opinion_path(@member.id), :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
 

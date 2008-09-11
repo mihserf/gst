@@ -50,6 +50,14 @@ $(document).ready(function(){
 		fx:'fade',
 		speed: 2000,
 		pause:1});
+	$("#top_texts").cycle({
+		fx:'fade',
+		speed: 2000,
+		pause:1});
+	if (ie) $("#top_texts_ie").cycle({
+		fx:'fade',
+		speed: 2000,
+		pause:1});
 	// --------------- TABS -------------------
 	$("#content_menu > ul").tabs({
 		fxFade: true,
@@ -74,4 +82,10 @@ $(document).ready(function(){
 	// --------------- TABS -------------------
 });
 
+
+function destroy(controller,id){
+    $.post("/"+controller+"/destroy/"+id, { },  function(data){
+
+                } );
+}
 

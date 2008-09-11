@@ -4,6 +4,9 @@ class Album < ActiveRecord::Base
   translate_columns :title, :description
   named_scope :main_album, :conditions =>{:main=>true}
 
+  validates_presence_of :title
+
   include SetIdentName
+
   
 end

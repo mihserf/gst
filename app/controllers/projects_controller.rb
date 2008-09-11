@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.find(:all)
+    @projects = Project.find(:all, :order => 'number ASC')
 
     respond_to do |format|
       format.html { render :template => "projects/list" unless admin?}
@@ -21,6 +21,8 @@ class ProjectsController < ApplicationController
     @project.attributes = params[:project]
 
     managing_photos
+
+    ApplicationController.helpers.update_numbers(@project.class, params)
 
     respond_to do |format|
       if @project.save!
@@ -43,7 +45,7 @@ class ProjectsController < ApplicationController
     managing_photos
 
     respond_to do |format|
-      if @project.save
+      if (@project.save && ApplicationController.helpers.update_numbers(@project.class, params, @project.id))
         flash[:notice] = 'Проект добавлен.'
         format.html { redirect_to projects_path }
         format.xml  { render :xml => @project, :status => :created, :location => @project }
@@ -79,4 +81,5 @@ class ProjectsController < ApplicationController
     end unless params[:existing_photos].empty?
   end
 
+    
 end

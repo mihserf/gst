@@ -5,6 +5,8 @@ class Status < ActiveRecord::Base
   
   translate_columns :name, :status_name
 
+  validates_presence_of :name, :status_name
+
   include SetIdentName
 
 end

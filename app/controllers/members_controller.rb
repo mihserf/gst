@@ -21,6 +21,8 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     params[:member][:status_ids] ||= []
     @member.attributes = params[:member]
+
+    ApplicationController.helpers.update_numbers(@member.class, params)
     
     unless params[:member_photo].nil?
       if @member_photo=@member.member_photo
@@ -51,7 +53,7 @@ class MembersController < ApplicationController
     @member.build_member_photo(params[:member_photo])  unless params[:member_photo].nil?
   
     respond_to do |format|
-      if @member.save
+      if (@member.save && ApplicationController.helpers.update_numbers(@member.class, params, @member.id))
         flash[:notice] = 'Член добавлен.'
         format.html { redirect_to members_path }
         format.xml  { render :xml => @member, :status => :created, :location => @member }
@@ -68,6 +70,20 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(members_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def update_numbers(model, new_obj_id=nil)
+    if params[:sortable_ids]
+      albums = model.find(:all, :order => 'number ASC', :limit => 100)
+      if new_obj_id
+        params[:sortable_ids] = params[:sortable_ids].gsub(/new/,new_obj_id.to_s)
+      end
+      sortable_ids = params[:sortable_ids].split(',')
+      #i=albums.size+1
+      i=0
+      sortable_ids =Hash[*sortable_ids.collect {|v| i+=1; [v,{'number'=>i}]}.flatten]
+        model.update(sortable_ids.keys, sortable_ids.values)
     end
   end
 

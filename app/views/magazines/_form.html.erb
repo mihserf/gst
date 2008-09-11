@@ -1,5 +1,9 @@
 <%= javascript_include_tag :fckeditor %>
 
+<%= javascript_include_tag 'jquery.validate.min.js' %>
+<%= javascript_include_tag 'validate_localization/messages_ru.js' %>
+<%= javascript_include_tag 'own.validate.js' %>
+
 Язык <%= Localedb.global.short %><br>
 <% form_for(@magazine, :html => { :multipart => true } ) do |f| %>
   <%= f.error_messages %>
@@ -9,7 +13,7 @@
   </p>
   <p>
     <%= f.label 'Название' %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => "required" %>
   </p>
 
   <p>

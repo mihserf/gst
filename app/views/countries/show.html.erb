@@ -3,7 +3,7 @@
   <%= countries_list(@country) %>
 </div>
 <div id="content_main">
-  <h3><%=h @country.name%></h3>
+  <h3><%=h ((@country.title unless @country.title.blank? ) || @country.name) %></h3>
 
 <%= @country.body %>
 

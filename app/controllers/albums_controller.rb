@@ -20,7 +20,7 @@ class AlbumsController < ApplicationController
     Album.update_all( :main => false)
     @album = Album.find(params[:id])
     @album.attributes = params[:album]
-
+    ApplicationController.helpers.update_numbers(@album.class, params)
     managing_photos
 
     respond_to do |format|
@@ -44,8 +44,8 @@ class AlbumsController < ApplicationController
     managing_photos
 
     respond_to do |format|
-      if @album.save
-        flash[:notice] = 'Проект добавлен.'
+      if (@album.save &&  ApplicationController.helpers.update_numbers(@album.class, params, @album.id))
+        flash[:notice] = 'Альбом добавлен.'
         format.html { redirect_to albums_path }
         format.xml  { render :xml => @album, :status => :created, :location => @album }
       else
@@ -76,4 +76,7 @@ class AlbumsController < ApplicationController
       @photo.update_attributes(photo)
     end unless params[:existing_photos].empty?
   end
+
+  
+
 end

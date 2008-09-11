@@ -2,6 +2,7 @@ class Member < ActiveRecord::Base
   has_many :member_statuses, :dependent => :destroy
   has_many :statuses, :through => :member_statuses, :dependent => :destroy
   has_many :translations, :class_name => 'MemberTranslation', :dependent => :destroy
+  has_many :member_events
   has_one :member_photo, :dependent => :destroy
   has_one :success_story, :dependent => :destroy
   has_one :story, :dependent => :destroy
@@ -11,6 +12,8 @@ class Member < ActiveRecord::Base
 
   named_scope :with_opinion, :joins =>:opinion
 
+  validates_presence_of :first_name, :last_name
+
   include SetIdentName
 
   def name
@@ -19,6 +22,11 @@ class Member < ActiveRecord::Base
 
   def name_view
     first_name+" "+last_name.first
+  end
+
+  def has_current_schedule?
+    beginning_of_current_month = Date.today().beginning_of_month
+    !member_events.find(:all, :include => :member_event_dates, :order =>"member_event_dates.begin_date ASC", :conditions => "member_event_dates.begin_date >= '#{beginning_of_current_month}'").empty?
   end
 
   

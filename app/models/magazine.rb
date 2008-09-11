@@ -3,6 +3,10 @@ class Magazine < ActiveRecord::Base
   has_many :articles
   has_many :translations, :class_name => 'MagazineTranslation', :dependent => :destroy
 
+  translate_columns :name, :description, :coord
+
+  validates_presence_of :name, :description
+
   include SetIdentName
   
 end

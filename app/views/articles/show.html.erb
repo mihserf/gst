@@ -1,9 +1,10 @@
 <%=tabs(:tab1=>:article.l("Статья"))%>
 <div id="content_right">
-  <%= items_list(@article, :attr_name => "title") %>
+  <%= items_list(@article, :attr_name => "title", :belongs_to => @magazine) %>
 </div>
 <div id="content_main">
-<h3 class="inline"><%=h @article.title%></h3> (<%= link_to @article.magazine.name, lang_magazine_path(lang_id(@lang),@article.magazine.ident_name) %>)
+<h4 style="font-weight:normal"><%=:source.l("Источник")+" : "+link_to(@magazine.name, lang_magazine_path(lang_id(@lang),@magazine.ident_name))   %></h4>
+<h4 class="inline"><%=h @article.title%></h4>   
 <br>
 <%= @article.body %>
 

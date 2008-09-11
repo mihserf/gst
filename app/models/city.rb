@@ -6,7 +6,9 @@ class City < ActiveRecord::Base
   has_one :city_coord
   
   translate_columns :name, :body
-  
+
+  validates_presence_of :name
+
   include SetIdentName
    
 

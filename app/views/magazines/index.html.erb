@@ -17,6 +17,7 @@
         <%end%>
     </td>
     <td><%= link_to image_tag("/images/delete_ico.gif",:alt=>"Удалить"), magazine, :confirm => 'Подтвердите удаление', :method => :delete %></td>
+    <td><%= link_to 'статьи', magazine_articles_path(magazine) %></td>
   </tr>
 <% end %>
 </table>

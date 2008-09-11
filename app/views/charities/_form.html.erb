@@ -1,5 +1,9 @@
 <%= javascript_include_tag :fckeditor %>
 
+<%= javascript_include_tag 'jquery.validate.min.js' %>
+<%= javascript_include_tag 'validate_localization/messages_ru.js' %>
+<%= javascript_include_tag 'own.validate.js' %>
+
 Язык <%= Localedb.global.short %><br>
 
 <% form_for(@charity, :html => { :multipart => true } ) do |f| %>
@@ -10,16 +14,16 @@
   </p>
   <p>
     <%= f.label 'Название' %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :class => "required" %>
   </p>
 
   <p>
     <%= f.label 'Анонс' %><br />
-    <%= fckeditor_textarea(:charity, :short_text, :toolbarSet => 'Simple', :width => '100%', :height => '220px') %>
+    <%= fckeditor_textarea(:charity, :short_text, :toolbarSet => 'Simple', :width => '100%', :height => '220px', :class =>"required" ) %>
   </p>
   <p>
     <%= f.label 'Текст' %><br />
-    <%= fckeditor_textarea(:charity, :body, :toolbarSet => 'Simple', :width => '100%', :height => '300px') %>
+    <%= fckeditor_textarea(:charity, :body, :toolbarSet => 'Simple', :width => '100%', :height => '300px', :class =>"required" ) %>
   </p>
 
   <p>

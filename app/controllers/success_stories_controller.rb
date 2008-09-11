@@ -47,7 +47,6 @@ class SuccessStoriesController < ApplicationController
   end
 
   def create
-    params[:success_story][:ident_name]=@member.ident_name+'_success_story'
     
     @success_story = SuccessStory.new(params[:success_story])
     

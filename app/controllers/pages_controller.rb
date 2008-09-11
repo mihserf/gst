@@ -46,13 +46,13 @@ class PagesController < ApplicationController
   def home
     @page=Page.find_by_ident_name("home")
     @events = Event.find(:all, :limit => 7, :order => "created_at")
-    @articles = Article.find(:all, :limit => 7, :order => "created_at")
+    @articles = Article.find(:all, :limit => 7, :order => "created_at", :include => :magazine)
     @success_stories = SuccessStory.find(:all, :limit => 6, :include => [:member,])
     @projects = Project.find(:all, :limit => 5)
   end
 
   def about_us
-    @page=Page.find_by_ident_name("about")
+    @page=Page.find_by_ident_name("about_us")
   end
 
   def contacts

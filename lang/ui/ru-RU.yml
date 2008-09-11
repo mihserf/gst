@@ -2,13 +2,24 @@ locale_name: Russian
 
 title: Заголовок
 
-menu: ru
+
+#common_attr
+description: Описание
+short_text: Краткий текст (Анонс)
+body: Текст
 
 #common
+lang: ru
 read_more: читать далее
 hide: скрыть
 photo: Фото
 of: из
+schedule: Расписание
+date: Число
+destination: Место пребывания
+source: Источник
+all_articles: Все статьи
+
 
 home: Главная
 corporate: О Компании
@@ -28,6 +39,7 @@ faq: Частые вопросы
 online_help: Помощь on-line
 forum: Форум
 contacts: Контакты
+about_us: О нас
 
 articles: Статьи
 article: Статья
@@ -38,6 +50,8 @@ countries: Страны
 projects: Проекты
 albums: Альбомы
 magazines: Журналы
+member_events: События
+
 
 
 #home tabs

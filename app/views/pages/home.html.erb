@@ -10,7 +10,7 @@ $(document).ready(function(){
         
         <%=tabs(:tab1=>"GST",:tab2=>:news.l("News"),:tab3=>:success_stories.l("Success stories"))%>
         
-
+                <% cache(:fragment => 'page1') do %>
                 <div id="page-1">
                     <%=@page.content%>
                 	<div style="clear:both"></div>
@@ -19,7 +19,7 @@ $(document).ready(function(){
                         <div id="projects_body">
                           <% for project in @projects %>
                             <div>
-                              <%= link_to (image_tag project.project_photos.logo.first.public_filename(:view)), lang_project_path(lang_id(@lang),project.ident_name) %>
+                              <%= link_to (image_tag project.project_photos.logo.first.public_filename(:view)), lang_project_path(lang_id(@lang),project.ident_name) unless project.project_photos.empty?%>
                               <div class="img_description">
                                 <%= link_to project.name, lang_project_path(lang_id(@lang),project.ident_name) %>
                               </div>
@@ -28,6 +28,7 @@ $(document).ready(function(){
                          </div>
                        </div>
                 </div>
+                <% end %>
                 <div id="page-2">
 
                   <div id="top_news">
@@ -45,7 +46,7 @@ $(document).ready(function(){
                         <h2><%=link_to :articles_list_name.l(), lang_articles_path(lang_id(@lang))%></h2>
                         <ul>
                        <%for article in @articles%>
-                         <li><%=link_to article.title, lang_article_path(lang_id(@lang),article)%></li>
+                         <li><%=link_to article.title, lang_magazine_article_path(lang_id(@lang),article.magazine.ident_name, article.ident_name)%></li>
                         <%end%>
                         </ul>
                 </div>
@@ -55,7 +56,7 @@ $(document).ready(function(){
                 <h2><%=:jim_articles.l("Статьи Джима Флетчера")%></h2>
                 <%=:jim_articles_text.l%>
                 <br />
-                <%=link_to :read_more.l("читать далее"), lang_jim_articles_path(lang_id(@lang)) %><%=@lang%>
+                <%=link_to :read_more.l("читать далее"), lang_jim_articles_path(lang_id(@lang)) %>
                 <p></p><p></p><p></p>
                 </div>
 

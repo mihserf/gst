@@ -1,7 +1,7 @@
 <%=tabs(:tab1=>:projects.l("Проекты"))%>
 
 <div id="content_right">
-    <%=items_list(@project, :attr_name =>"name")%>
+    <%=items_list(@project, :attr_name =>"name", :order => 'number DESC')%>
 </div>
 
 <div id="content_main">

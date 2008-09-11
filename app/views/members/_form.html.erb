@@ -30,6 +30,14 @@ $(document).ready(function(){
   */
 });
 </script>
+
+<%= javascript_include_tag 'jquery.sortable.min.js' %>
+<%= javascript_include_tag 'own.sortable.js' %>
+
+<%= javascript_include_tag 'jquery.validate.min.js' %>
+<%= javascript_include_tag 'validate_localization/messages_ru.js' %>
+<%= javascript_include_tag 'own.validate.js' %>
+
 Язык <b><%=Localedb.global.short%></b>
 <% form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
@@ -43,11 +51,11 @@ $(document).ready(function(){
 
     <p>
       <%= f.label 'Имя' %><br />
-      <%= f.text_field :first_name %>
+      <%= f.text_field :first_name, :class => "required" %>
     </p>
     <p>
       <%= f.label 'Фамилия' %><br />
-      <%= f.text_field :last_name %>
+      <%= f.text_field :last_name, :class => "required" %>
     </p>
     <p>
       <%= f.label 'Отчество' %><br />
@@ -91,6 +99,9 @@ $(document).ready(function(){
     <%= f.label 'Город' %><br />
     <%= f.select(:city_id, City.find(:all, :order => "name").collect{|c| [c.name, c.id]}) %>
   </p>
+
+
+  <%= set_order(@member) %>
 
   
   

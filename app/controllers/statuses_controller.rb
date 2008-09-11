@@ -21,6 +21,7 @@ class StatusesController < ApplicationController
 
   def update
     @status = Status.find(params[:id])
+    update_numbers(@status.class)
     #managing_translations(@status)
     respond_to do |format|
       #if (@status.update_attributes(params[:status]) && @status.translations.update_attributes(params[:translations]))
@@ -43,7 +44,7 @@ class StatusesController < ApplicationController
     @status = Status.new(params[:status])
     #managing_translations(@status)
     respond_to do |format|
-      if @status.save
+      if (@status.save && update_numbers(@status.class, @status.id))
         flash[:notice] = 'Член добавлен.'
         format.html { redirect_to statuses_path }
         format.xml  { render :xml => @status, :status => :created, :location => @status }
@@ -63,6 +64,18 @@ class StatusesController < ApplicationController
     end
   end
 
+  def update_numbers(model, new_obj_id=nil)
+    if params[:sortable_ids]
+      albums = model.find(:all, :order => 'number DESC', :limit => 20)
+      if new_obj_id
+        params[:sortable_ids] = params[:sortable_ids].gsub(/new/,new_obj_id.to_s)
+      end
+      sortable_ids = params[:sortable_ids].split(',')
+      i=albums.size+1
+      sortable_ids =Hash[*sortable_ids.collect {|v| i-=1; [v,{'number'=>i}]}.flatten]
+        model.update(sortable_ids.keys, sortable_ids.values)
+    end
+  end
   
 end
 

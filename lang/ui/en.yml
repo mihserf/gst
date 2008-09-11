@@ -3,13 +3,21 @@
 locale_name: English
 flag: us.png
 
-menu: en
+#common_attr
+description: Description
+short_text: Short text
+body: Text
 
 #common
 read_more: read more
 hide: hide
 photo: Photo
 of: of
+schedule: Schedule
+date: Date
+destination: Destination
+source: Source
+all_articles: All articles
 
 
 home: Home
@@ -30,6 +38,7 @@ faq: FAQ
 online_help: On-line help
 forum: Forum
 contacts: Contacts
+about_us: About us
 
 articles: Articles
 article: Article
@@ -40,6 +49,7 @@ countries: Countries
 projects: Projects
 albums: Albums
 magazines: Magazines
+member_events: Events
 
 #home tabs
 
