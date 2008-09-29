@@ -4,7 +4,7 @@ class CreateAlbums < ActiveRecord::Migration
       t.string :ident_name
       t.string :title
       t.text :description
-      t.main  :boolean
+      t.boolean  :main
 
       t.timestamps
     end

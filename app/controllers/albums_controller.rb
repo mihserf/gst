@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       format.html { render :template => "albums/list" unless admin?}
-      format.xml  { render :xml => @members }
+      format.xml  { render :xml => @albums }
     end
   end
 
