@@ -6,6 +6,7 @@ function setHeight(name) {
    document.getElementById(name+"_r").style.height = (h1) + 'px';
 }
 
+
 function setHeightAll(){
 	setHeight("content");
 	setHeight("content_cont");
