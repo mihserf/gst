@@ -55,6 +55,7 @@
         <li><%= link_to 'Страницы', pages_path %></li>
       </ul>
   </li>
+
   <% end %>
 
 </ul>
