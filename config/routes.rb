@@ -26,6 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     l.resources :projects
     l.resources :albums
     l.resources :magazines, :has_many => :articles
+    l.resources :time_tables
   end
 
 
@@ -48,6 +49,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :project_photos
   map.resources :album_photos
   map.resources :magazines, :has_many => :articles
+  map.resources :time_tables
 
 
   map.with_options :controller => "pages" do |page|

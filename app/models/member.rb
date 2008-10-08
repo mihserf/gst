@@ -11,6 +11,7 @@ class Member < ActiveRecord::Base
   translate_columns  :first_name, :last_name, :middle_name, :status
 
   named_scope :with_opinion, :joins =>:opinion
+  named_scope :with_events, :include =>:member_events
 
   validates_presence_of :first_name, :last_name
 

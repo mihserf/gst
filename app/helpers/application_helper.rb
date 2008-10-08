@@ -100,6 +100,14 @@ module ApplicationHelper
 
     render :partial => "shared/set_order", :locals => {:obj => obj, :attr_name => options[:attr_name]}
   end
+
+  def time_table(member)
+    beginning_of_current_month = Date.today().beginning_of_month
+    beginning_of_2_months_ago = Date.today().months_ago(2)
+    date_cond = admin? ?  beginning_of_2_months_ago : beginning_of_current_month
+    member_events = member.member_events.find(:all, :include => :member_event_dates, :order =>"member_event_dates.begin_date ASC", :conditions => "member_event_dates.begin_date >= '#{date_cond}'")
+    render :partial=>"shared/time_table", :locals => {:member_events => member_events}
+  end
   
   
   #CONTROLLER HELPERS
