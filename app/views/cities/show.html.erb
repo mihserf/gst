@@ -7,7 +7,7 @@
 <div id="content_main">
 <h3><%=h @city.name%></h3>
 
-  <%= image_tag @city.city_photos.main.first.public_filename(:view), :align => "left" unless @city.city_photos.empty? || @city.city_photos.main.nil?%>
+  <%= image_tag @city.city_photos.main.first.public_filename(:view), :align => "left" unless @city.city_photos.empty? || @city.city_photos.main.empty?%>
 
 <%= @city.body %>
 
