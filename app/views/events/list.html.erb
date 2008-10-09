@@ -9,7 +9,7 @@
 
   <%for item in @events%>
    <%=link_to item.title, lang_event_path(lang_id(@lang),item), :class => "link_title strong"%>
-  <p><%=simple_format(item.short_text)%></p>
+  <%=simple_format(item.short_text)%>
   <br>
   <%end%>
 
