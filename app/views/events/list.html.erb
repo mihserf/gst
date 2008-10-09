@@ -8,7 +8,7 @@
 <div id="content_main">
 
   <%for item in @events%>
-   <%=link_to item.title, lang_event_path(lang_id(@lang),item), :class => "link_title strong"%>
+  <div style="background: #e9ebee;"><%=link_to item.title, lang_event_path(lang_id(@lang),item), :class => "link_title strong"%></div>
   <%=simple_format(item.short_text)%>
   <br>
   <%end%>
