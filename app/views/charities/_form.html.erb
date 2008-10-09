@@ -3,12 +3,11 @@
 <%= javascript_include_tag 'jquery.validate.min.js' %>
 <%= javascript_include_tag 'validate_localization/messages_ru.js' %>
 <%= javascript_include_tag 'own.validate.js' %>
-
+<%= error_messages_for :charity %>
 Язык <%= Localedb.global.short %><br>
 
 <% form_for(@charity, :html => { :multipart => true } ) do |f| %>
-  <%= f.error_messages %>
-
+  
   <p>
     <%=ident_choice(@charity)%>
   </p>
@@ -19,7 +18,7 @@
 
   <p>
     <%= f.label 'Анонс' %><br />
-    <%= fckeditor_textarea(:charity, :short_text, :toolbarSet => 'Simple', :width => '100%', :height => '220px', :class =>"required" ) %>
+    <%= f.text_area :short_text, :size => "100x3", :class => "required" %>
   </p>
   <p>
     <%= f.label 'Текст' %><br />

@@ -4,9 +4,8 @@
 <%= javascript_include_tag 'own.validate.js' %>
 
 Язык <%= Localedb.global.short %><br>
-
+<%= error_messages_for :article %>
 <% form_for([@magazine,@article], :html => { :multipart => true} ) do |f| %>
-  <%= f.error_messages %>
   
   <p>Источник "<%= @magazine.name %>"</p>
 
@@ -21,7 +20,7 @@
 
   <p>
     <%= f.label 'Анонс' %><br />
-    <%= fckeditor_textarea(:article, :short_text, :toolbarSet => 'Simple', :width => '100%', :height => '220px', :class =>"required") %>
+    <%= f.text_area :short_text, :size => "100x3", :class => "required" %>
   </p>
   <p>
     <%= f.label 'Текст' %><br />

@@ -4,11 +4,10 @@
 <%= javascript_include_tag 'validate_localization/messages_ru.js' %>
 <%= javascript_include_tag 'own.validate.js' %>
 
+<%= error_messages_for :jim_article %>
 Язык <%= Localedb.global.short %><br>
-
 <% form_for(@jim_article, :html => { :multipart => true } ) do |f| %>
-  <%= f.error_messages %>
-
+  
   <p>
     <%=ident_choice(@jim_article)%>
   </p>
@@ -19,11 +18,11 @@
 
   <p>
     <%= f.label 'Анонс' %><br />
-    <%= fckeditor_textarea(:jim_article, :short_text, :toolbarSet => 'Simple', :width => '100%', :height => '220px') %>
+    <%= f.text_area :short_text, :size => "100x3", :class => "required" %>
   </p>
   <p>
     <%= f.label 'Текст' %><br />
-    <%= fckeditor_textarea(:jim_article, :body, :toolbarSet => 'Simple', :width => '100%', :height => '300px') %>
+    <%= fckeditor_textarea(:jim_article, :body, :toolbarSet => 'Simple', :width => '100%', :height => '600px') %>
   </p>
 
   <p>
