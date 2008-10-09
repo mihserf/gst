@@ -272,7 +272,7 @@ filter:expression(fixPNG(this));
 #content_menu ul{
 list-style:none;
 margin:0px;  padding:0px
-} 
+}
 #content_menu a{
 text-decoration:none;
 font-size:12px;
@@ -424,7 +424,7 @@ ul#navmenu li {
 }
 
 ul#navmenu ul {
-  background: #fbda91; 
+  background: #fbda91;
   margin: 0;
   border: 0 none;
   padding: 0;
@@ -485,7 +485,7 @@ ul#navmenu li.iehover li a {
   background: #f5c352;
   color: #091445;
 width : 200 px;
-	
+
 }
 
 /* 2nd Menu Hover Persistence */
@@ -830,4 +830,12 @@ ul#sortable li{
 
 input.error {
   border: 1px solid red;
+}
+
+
+#flags a img{
+  border:transparent 2px solid;
+}
+#flags a:hover img{
+  background: #4f5679;
 }
