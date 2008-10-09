@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.find(:all, :order => :created_at)
+    @events = Event.find(:all, :order => "created_at DESC")
 
     respond_to do |format|
       format.html { render :template => "events/list" unless admin?}
