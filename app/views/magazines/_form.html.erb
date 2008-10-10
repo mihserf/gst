@@ -4,10 +4,11 @@
 <%= javascript_include_tag 'validate_localization/messages_ru.js' %>
 <%= javascript_include_tag 'own.validate.js' %>
 
+<%= error_messages_for :magazine %>
+
 Язык <%= Localedb.global.short %><br>
 <% form_for(@magazine, :html => { :multipart => true } ) do |f| %>
-  <%= f.error_messages %>
-
+  
   <p>
     <%=ident_choice(@magazine)%>
   </p>
