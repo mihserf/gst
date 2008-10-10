@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
-    @events = admin? ?  Event.find(:all, :order => "created_at DESC") : Event.find(:limit => 7, :order => "created_at DESC")
+    @events = admin? ?  Event.find(:all, :order => "created_at DESC") : Event.find(:all, :limit => 7, :order => "created_at DESC")
 
     respond_to do |format|
       format.html { render :template => "events/list" unless admin?}
