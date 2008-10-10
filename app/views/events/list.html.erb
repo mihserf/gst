@@ -2,7 +2,7 @@
 <%=tabs(:tab1=>:events.l("Новости"))%>
 
 <div id="content_right">
-    <%=items_list(@events, :attr_name =>"title")%>
+    <%=items_list(@events, :attr_name =>"title", :order => "DESC")%>
 </div>
 
 <div id="content_main">
