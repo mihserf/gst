@@ -11,7 +11,7 @@
 <h4><%=:source.l("Источник")+" : "+link_to (@magazine.name, lang_magazine_path(lang_id(@lang),@magazine.ident_name))   %></h4>
   <%for item in @articles%>
    <%=link_to item.title, lang_magazine_article_path(lang_id(@lang),@magazine.ident_name,item.ident_name), :class => "link_title"%>
-  <%=item.short_text%>
+  <%=simple_format(item.short_text)%>
   <br>
   <%end%>
 

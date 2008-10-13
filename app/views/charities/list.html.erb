@@ -10,7 +10,7 @@
 
   <%for item in @charities%>
    <%=link_to item.title, lang_charity_path(lang_id(@lang),item), :class => "link_title"%>
-  <%=item.short_text%>
+  <%=simple_format(item.short_text)%>
   <br>
   <%end%>
 
