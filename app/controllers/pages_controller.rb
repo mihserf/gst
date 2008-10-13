@@ -29,7 +29,7 @@ class PagesController < ApplicationController
   def update
     @page=Page.find(params[:id])
     if  @page.update_attributes(params[:page])
-      expire_fragment(:fragment => 'page1') if params[:id].to_i==1
+      expire_fragment(:fragment => 'page1')# if params[:id].to_i==1
       flash[:notice]="страница обновлена"
       redirect_to pages_path
     end
