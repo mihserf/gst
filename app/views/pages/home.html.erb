@@ -10,7 +10,8 @@ $(document).ready(function(){
         
         <%=tabs(:tab1=>"GST",:tab2=>:news.l("News"),:tab3=>:success_stories.l("Success stories"))%>
         
-                <% cache(:fragment => 'page1') do %>
+                <% #  cache(:fragment => 'page1') do
+                %>
                 <div id="page-1">
                     <%=@page.content%>
                 	<div style="clear:both"></div>
@@ -28,7 +29,8 @@ $(document).ready(function(){
                          </div>
                        </div>
                 </div>
-                <% end %>
+                <% #end 
+                %>
                 <div id="page-2">
 
                   <div id="top_news">
