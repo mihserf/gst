@@ -5,7 +5,7 @@
 </div>
 
 <div id="content_main">
-<%= image_tag @magazine.logo.public_filename(:view), :align => "left" %> <h3 class="inline"><%=h @magazine.name%></h3>
+<%= image_tag @magazine.logo.public_filename(:view), :align => "left" unless @magazine.logo.nil?%> <h3 class="inline"><%=h @magazine.name%></h3>
 
 <%= @magazine.description %>
 
