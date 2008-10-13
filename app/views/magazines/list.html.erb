@@ -10,7 +10,7 @@
 
   <%for item in @magazines%>
     <div class="magazine">
-        <%=link_to (image_tag item.logo.public_filename(:thumb), :align => "left"), lang_magazine_path(lang_id(@lang),item.ident_name), :align => "left"%>
+        <%=link_to (image_tag item.logo.public_filename(:thumb), :align => "left"), lang_magazine_path(lang_id(@lang),item.ident_name), :align => "left" unless item.logo.nil?%>
         <h4><%=link_to item.name, lang_magazine_path(lang_id(@lang),item.ident_name), :class => "link_title"%></h4>
         <% for article in item.articles.find(:all, :limit => 2, :order => "created_at DESC") %>
           <div class="magazine_article">
