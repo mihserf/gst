@@ -70,7 +70,7 @@
 <div id="map">
   <div style="height:<%=map.height%>px; width:<%=map.width%>px; margin:0 auto">
       <div style="position:absolute; background:url('<%=map.public_filename%>') no-repeat left top; width:<%=map.width%>px; height:<%=map.height%>px;">
-          <div id='city' style="position:absolute; width:40px; height:14px; left:<%=@city_coord.coord[:left] rescue "0"%>px; top:<%=@city_coord.coord[:top] rescue "0"%>px; display:block"><%=@city.name || "Город"%></div>
+          <div id='city' style="position:absolute; width:40px; height:14px; left:<%=@city_coord.coord[:left] rescue "0"%>px; top:<%=@city_coord.coord[:top] rescue "0"%>px; display:block"><nobr><%=@city.name || "Город"%></nobr></div>
           <div id='city_marker' style="position:absolute; background:#ccc; width:8px; height:8px; left:<%=@city_coord.coord[:left_marker] rescue "0"%>px; top:<%=@city_coord.coord[:top_marker] rescue "0"%>px; display:block">*</div>
       </div>
     </div>
