@@ -56,7 +56,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.with_options :controller => "pages" do |page|
     page.home "/", :action =>  "home"
-    ["about_us","contacts","faq","founder","team","mission","principles"].each do |action|  page.home "/#{action}", :action =>action   end
+    ["about_us","contacts","faq","founder","team","mission","principles","london"].each do |action|  page.home "/#{action}", :action =>action   end
     page.home ":lang/", :action =>  "home", :lang => /ru|en|ua/
     page.home ":lang/:action"
 

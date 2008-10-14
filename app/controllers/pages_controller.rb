@@ -83,4 +83,10 @@ class PagesController < ApplicationController
   def principles
     @page=Page.find_by_ident_name("principles")
   end
+
+  def london
+    @page=Page.find_by_ident_name("london")
+  end
+
+
 end
