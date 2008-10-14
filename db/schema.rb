@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080903134737) do
+ActiveRecord::Schema.define(:version => 20081014092121) do
 
   create_table "album_photo_translations", :force => true do |t|
     t.string   "description"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20080903134737) do
     t.integer  "num_order"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "coord"
   end
 
   create_table "city_coords", :force => true do |t|
@@ -260,7 +261,7 @@ ActiveRecord::Schema.define(:version => 20080903134737) do
 
   create_table "member_event_dates", :force => true do |t|
     t.integer  "member_event_id"
-    t.date     "start_date"
+    t.date     "begin_date"
     t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -323,6 +324,19 @@ ActiveRecord::Schema.define(:version => 20080903134737) do
     t.integer  "city_id"
     t.string   "ident_name"
     t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "opinion_photos", :force => true do |t|
+    t.integer  "opinion_id"
+    t.integer  "size"
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -426,6 +440,7 @@ ActiveRecord::Schema.define(:version => 20080903134737) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ident_name"
+    t.integer  "ident_num"
   end
 
   create_table "stories", :force => true do |t|
@@ -490,6 +505,26 @@ ActiveRecord::Schema.define(:version => 20080903134737) do
     t.string   "title"
     t.text     "short_text"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trainer_experience_translations", :force => true do |t|
+    t.integer  "localedb_id"
+    t.integer  "trainer_experience_id"
+    t.string   "title"
+    t.text     "short_text"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trainer_experiences", :force => true do |t|
+    t.string   "title"
+    t.text     "short_text"
+    t.text     "body"
+    t.integer  "member_id"
+    t.string   "ident_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

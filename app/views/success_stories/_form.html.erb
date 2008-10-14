@@ -1,9 +1,11 @@
 <%= javascript_include_tag :fckeditor %>
+<%= javascript_include_tag 'jquery.validate.min.js' %>
+<%= javascript_include_tag 'validate_localization/messages_ru.js' %>
+<%= javascript_include_tag 'own.validate.js' %>
 
-
+<%= error_messages_for :success_story %>
 <% form_for @success_story, :url => member_success_story_path(@member.id), :html => { :multipart => true } do |f| %>
-  <%= f.error_messages %>
-
+  
   Язык <%= Localedb.global.short %><br>
   Автор  <%= @member.name %>
   
@@ -14,7 +16,7 @@
   </p>
   <p>
     <%= f.label 'краткий текст' %><br />
-    <%= fckeditor_textarea(:success_story, :short_text, :toolbarSet => 'Simple', :width => '70%', :height => '150px') %>
+    <%= f.text_area :short_text, :size => "100x3", :class =>"required"  %>
   </p>
   <p>
     <%= f.label 'полный текст' %><br />

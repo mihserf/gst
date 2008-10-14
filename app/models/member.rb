@@ -7,6 +7,7 @@ class Member < ActiveRecord::Base
   has_one :success_story, :dependent => :destroy
   has_one :story, :dependent => :destroy
   has_one :opinion, :dependent => :destroy
+  has_one :trainer_experience, :dependent => :destroy
   belongs_to :city
   translate_columns  :first_name, :last_name, :middle_name, :status
 
