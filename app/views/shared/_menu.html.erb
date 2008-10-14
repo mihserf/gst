@@ -8,8 +8,8 @@
     	<li><%= link_to :founder.l("Основатель"), "/#{lang_id(@lang)}/founder" %></li>
         <li><%= link_to :team.l("Команда"), "/#{lang_id(@lang)}/team" %></li>
   	<li><%= link_to :trainers.l("Тренеры"), lang_status_path(lang_id(@lang),"international_trainers") %></li>
-        <li><%= link_to :trainer_schedule.l("Расписание тренеров"), lang_status_path(lang_id(@lang),"international_trainers") %></li>
-        <li><%= link_to :trainer_experience.l("Опыт тренеров"), lang_status_path(lang_id(@lang),"international_trainers") %></li>
+        <li><%= link_to :trainer_schedule.l("Расписание тренеров"), lang_time_tables_path(lang_id(@lang)) %></li>
+        <li><%= link_to :trainer_experience.l("Опыт тренеров"), lang_trainer_experiences_path(lang_id(@lang)) %></li>
   	<li><%= link_to :mission.l("Задачи"), "/#{lang_id(@lang)}/mission" %></li>
   	<li><%= link_to :principles.l("Принципы работы"), "/#{lang_id(@lang)}/principles" %></li>
         <li><%= link_to :success_stories.l("Истории успеха"), lang_success_stories_path(lang_id(@lang)) %></li>
