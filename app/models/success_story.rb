@@ -5,6 +5,6 @@ class SuccessStory < ActiveRecord::Base
 
   translate_columns  :title, :short_text, :body
 
-  validates_presence_of  :short_text, :body
+  validates_presence_of  :short_text
 
 end
