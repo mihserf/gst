@@ -1,7 +1,7 @@
 <%=tabs(:tab1=>:article.l("Статья"))%>
 
 <div id="content_right">
-  <%= items_list(@jim_article, :attr_name => "title") %>
+  <%= items_list(@jim_article, :attr_name => "title", :order => "created_at DESC") %>
 </div>
 
 <div id="content_main">

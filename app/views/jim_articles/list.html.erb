@@ -2,14 +2,14 @@
 <%=tabs(:tab1=>:articles.l("Статьи"))%>
 
 <div id="content_right">
-    <%=items_list(@jim_articles, :attr_name =>"title")%>
+    <%=items_list(@jim_articles, :attr_name =>"title", :order => "created_at DESC")%>
 </div>
 
 <div id="content_main">
 
   <%for item in @jim_articles%>
    <%=link_to item.title, lang_jim_article_path(lang_id(@lang),item), :class => "link_title"%>
-  <%=item.short_text%>
+   <%=simple_format(item.short_text)%>
   <br>
   <%end%>
 
