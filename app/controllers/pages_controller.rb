@@ -35,7 +35,7 @@ class PagesController < ApplicationController
     if  @page.update_attributes(params[:page])
       expire_fragment(:fragment => 'page1')# if params[:id].to_i==1
       flash[:notice]="страница обновлена"
-      redirect_to lang_pages_path(lang_id(@lang))
+      redirect_to lang_pages_path(@lang.to_s.split('-').first)
     end
   end
 
