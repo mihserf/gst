@@ -17,15 +17,7 @@ module ApplicationHelper
   end
 
   def lang_id(lang)
-    case lang.to_s
-      when 'en-*'
-        return "en"
-      when 'ru-RU'
-        return "ru"
-      when 'ua-UA'
-        return "ua"
-      else return ""
-     end
+    lang.to_s.split("-").first
   end
 
   def countries_list(country)
