@@ -15,5 +15,5 @@
 
 
   <%content_for(:admin_actions) do%>
-     <%= link_to 'Редактировать', edit_jim_article_path(@jim_article) %>
+     <%= link_to 'Редактировать', edit_lang_jim_article_path(lang_id(@lang),@jim_article) %>
   <%end%>
