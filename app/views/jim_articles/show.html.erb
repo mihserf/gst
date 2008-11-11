@@ -1,4 +1,5 @@
 <%=tabs(:tab1=>:article.l("Статья"))%>
+<h3><%= :jim_articles.l("Статьи Джима Флетчера") %></h3>
 
 <div id="content_right">
   <%= items_list(@jim_article, :attr_name => "title", :order => "created_at DESC") %>
