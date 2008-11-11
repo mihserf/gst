@@ -65,7 +65,7 @@ class JimArticlesController < ApplicationController
     respond_to do |format|
       if @jim_article.save!
         flash[:notice] = 'JimArticle was successfully updated.'
-        format.html { redirect_to(@jim_article) }
+        format.html { redirect_to lang_jim_article_path(@lang.to_s.split('-').first,@jim_article) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
