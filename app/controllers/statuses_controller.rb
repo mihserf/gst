@@ -27,7 +27,7 @@ class StatusesController < ApplicationController
       #if (@status.update_attributes(params[:status]) && @status.translations.update_attributes(params[:translations]))
       if @status.update_attributes(params[:status])
         flash[:notice] = 'Член изменён.'
-        format.html { redirect_to statuses_path }
+        format.html { redirect_to lang_statuses_path(@lang.to_s.split('-').first) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save!
         flash[:notice] = 'Проект изменён.'
-        format.html { redirect_to projects_path }
+        format.html { redirect_to lang_projects_path(@lang.to_s.split('-').first) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

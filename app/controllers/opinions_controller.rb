@@ -41,7 +41,7 @@ class OpinionsController < ApplicationController
     respond_to do |format|
       if @opinion.save!
         flash[:notice] = 'Отзыв изменён.'
-        format.html { redirect_to members_path }
+        format.html { redirect_to lang_members_path(@lang.to_s.split('-').first)}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

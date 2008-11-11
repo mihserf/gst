@@ -65,7 +65,7 @@ class CharitiesController < ApplicationController
     respond_to do |format|
       if @charity.save!
         flash[:notice] = 'Charity was successfully updated.'
-        format.html { redirect_to(@charity) }
+        format.html { redirect_to lang_charity_path(@lang.to_s.split('-').first,@charity) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -29,7 +29,7 @@ class MemberEventsController < ApplicationController
     respond_to do |format|
       if @member_event.save!
         flash[:notice] = 'Событие  изменено.'
-        format.html { redirect_to member_member_events_path(@member) }
+        format.html { redirect_to lang_member_member_events_path(@lang.to_s.split('-').first,@member) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

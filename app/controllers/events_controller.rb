@@ -65,7 +65,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save!
         flash[:notice] = 'Event was successfully updated.'
-        format.html { redirect_to(@event) }
+        format.html { redirect_to lang_event_path(@lang.to_s.split('-').first,@event) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -66,7 +66,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save!
         flash[:notice] = 'Article was successfully updated.'
-        format.html { redirect_to magazine_articles_path(@magazine) }
+        format.html { redirect_to lang_magazine_article_path(@lang.to_s.split('-').first,@magazine,@article) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

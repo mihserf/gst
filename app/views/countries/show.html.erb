@@ -27,5 +27,5 @@
 
 
   <%content_for(:admin_actions) do%>
-     <%= link_to 'Редактировать', edit_country_path(@country) %>
+     <%= link_to 'Редактировать', edit_lang_country_path(lang_id(@lang),@country) %>
   <%end%>
