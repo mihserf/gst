@@ -27,6 +27,7 @@ $(document).ready(function(){
         <% unless member.story.nil? %>  
           <div>
           <%=member.story.body%>
+          <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать историю"), edit_lang_member_story_path(lang_id(@lang),member) if admin? %>
           </div>
         <% end %>
       </div>
