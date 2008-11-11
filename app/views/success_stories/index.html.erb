@@ -9,7 +9,6 @@ $(document).ready(function(){
 
 <%for success_story in @success_stories%>
   <div  class="success_story">
-  <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать историю"), edit_lang_member_success_story_path(lang_id(@lang),success_story.member) if admin? %>
   <h3><%=success_story.member.first_name%> (<%=success_story.member.status_additional%><%=success_story.member.statuses.find(:all).collect(&:status_name).join(",")%> <%= ","+success_story.member.city.name %>)</h3>
   <%= image_tag success_story.member.member_photo.public_filename(:view),  :align=>"left" unless success_story.member.member_photo.nil?%>
     <div class="success_story_short">
@@ -19,5 +18,6 @@ $(document).ready(function(){
       <%=success_story.body%>
       </div>
     </div>
+    <%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать историю"), edit_lang_member_success_story_path(lang_id(@lang),success_story.member) if admin? %>
   </div>
 <%end%>
