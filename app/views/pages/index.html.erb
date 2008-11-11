@@ -3,7 +3,12 @@
 
 <ul>
 <% for page in @pages %>
-  <li style="list-style:none"><a href="<%="/"+Localedb.global.short rescue ""%>/<%=page.ident_name%>"><%=page.name%></a>
+  <li style="list-style:none">
+    <% unless page.controller_name.empty? %>
+        <%= link_to page.name,lang_page_path(lang_id(@lang),page.ident_name) %>
+    <% else %>
+        <a href="<%="/"+Localedb.global.short rescue ""%>/<%=page.ident_name%>"><%=page.name%></a>
+    <% end %>
   <div class='admin_edit_actions' style="font-size:10pt;  padding-bottom:7px">
     <%@locales.each do |loc|%>
         <%=loc.short%><%= link_to image_tag("/images/edit_ico.gif",:alt=>"Редактировать"), edit_lang_page_path(loc.short,page) %>
