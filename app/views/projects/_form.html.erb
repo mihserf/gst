@@ -15,8 +15,8 @@
 </script>
 
 Язык    <%=Localedb.global.short%>
+<%= error_messages_for :project %>
 <% form_for @project, :html => { :multipart => true } do |f| %>
-  <%= f.error_messages %>
   <p>
     <%=ident_choice(@project)%>
   </p>

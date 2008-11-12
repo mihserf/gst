@@ -1,7 +1,7 @@
 <%= javascript_include_tag :fckeditor %>
 
+<%= error_messages_for :page %>
 <%form_for @page do |f|%>
-<%= f.error_messages %>
 Язык <b><%=lang_id(@lang)%></b>
 <p>
 <%= f.label 'Заголовок' %><br />
