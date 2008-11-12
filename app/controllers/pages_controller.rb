@@ -54,7 +54,7 @@ class PagesController < ApplicationController
     @events = Event.find(:all, :limit => 7, :order => "created_at DESC")
     @articles = Article.find(:all, :limit => 7, :order => "created_at DESC", :include => :magazine)
     @success_stories = SuccessStory.find(:all, :limit => 6, :include => [:member,])
-    @projects = Project.find(:all, :limit => 5)
+    @projects = Project.find(:all, :limit => 4)
   end
 
   def about_us
