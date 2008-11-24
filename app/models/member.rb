@@ -26,6 +26,10 @@ class Member < ActiveRecord::Base
     first_name+" "+last_name.first
   end
 
+  def robert?
+    first_name.include?("Роберт") || first_name.include?("Robert")
+  end
+
   def has_current_schedule?
     beginning_of_current_month = Date.today().beginning_of_month
     !member_events.find(:all, :include => :member_event_dates, :order =>"member_event_dates.begin_date ASC", :conditions => "member_event_dates.begin_date >= '#{beginning_of_current_month}'").empty?
