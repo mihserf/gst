@@ -14,7 +14,11 @@ $(document).ready(function(){
           <%= image_tag member.member_photo.public_filename(:view),  :align=>"left" unless member.member_photo.nil?%>
             
             <div class="success_story_short">
-              <h4><%=member.first_name%> (<%=member.status_additional%><%=member.statuses.find(:all).collect(&:status_name).join(",")%> <%= ","+member.city.name %>)</h4>
+              <h4><%=member.first_name%>
+                <% unless member.robert? %> 
+                (<%=member.status_additional%><%=member.statuses.find(:all).collect(&:status_name).join(",")%> <%= ","+member.city.name %>)
+                <% end %>
+                </h4>
               <div><a class="toggle_link" href="#"><%=:view_schedule.l("смотреть расписание")%></a></div>
               <div class="toggle_div success_story_full">
               <%=time_table(member)%>
